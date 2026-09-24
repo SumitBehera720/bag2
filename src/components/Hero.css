@@ -1,0 +1,127 @@
+.editorial-hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-ivory);
+}
+
+.hero-bg-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-img-fullscreen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: contrast(1.05) saturate(0.9);
+}
+
+.hero-content-layer {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  /* Fallback gradient if image doesn't provide enough contrast */
+  background: linear-gradient(to right, rgba(244, 240, 232, 0.95) 0%, rgba(244, 240, 232, 0.8) 35%, rgba(244, 240, 232, 0) 65%);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.editorial-container {
+  width: 100%;
+  padding: 0 5%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.hero-text-block {
+  width: 100%;
+  max-width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tech-header {
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--color-charcoal);
+  padding-bottom: 8px;
+  display: inline-block;
+  width: max-content;
+  color: var(--color-charcoal);
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 8vw, 7.5rem);
+  line-height: 0.9;
+  margin-bottom: 32px;
+  color: var(--color-charcoal);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.hero-description {
+  font-size: 1.125rem;
+  color: var(--color-charcoal);
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.hero-small-line {
+  color: var(--color-charcoal);
+  opacity: 0.7;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .editorial-hero {
+    height: 85vh; /* 78-88vh target */
+    min-height: auto;
+  }
+  
+  .hero-content-layer {
+    background: linear-gradient(to bottom, rgba(244, 240, 232, 0.95) 0%, rgba(244, 240, 232, 0.7) 45%, rgba(244, 240, 232, 0) 100%);
+    align-items: flex-start;
+    padding-top: 140px; /* Space for navbar */
+  }
+
+  .hero-text-block {
+    max-width: 100%;
+  }
+
+  .tech-header {
+    width: 100%;
+    font-size: 0.65rem;
+  }
+
+  .hero-title {
+    font-size: clamp(3.5rem, 12vw, 5rem);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .btn-editorial,
+  .hero-actions .btn-editorial-outline {
+    width: 100%;
+    justify-content: center;
+  }
+}

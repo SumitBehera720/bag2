@@ -1,0 +1,131 @@
+.editorial-final-cta {
+  background-color: var(--color-charcoal);
+  color: var(--color-ivory);
+  padding: 72px 0 80px;
+}
+
+.final-cta-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.final-cta-visual {
+  width: 100%;
+}
+
+.final-cta-img-wrapper {
+  width: 100%;
+  height: clamp(380px, 60vh, 450px);
+  background-color: var(--color-stone);
+  position: relative;
+  overflow: hidden;
+}
+
+.final-cta-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.05) saturate(0.9);
+}
+
+.final-cta-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.final-cta-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  line-height: 1.05;
+  margin: 0;
+}
+
+.final-cta-desc {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  max-width: 440px;
+}
+
+.final-cta-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.btn-primary-editorial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-olive);
+  color: var(--color-ivory);
+  padding: 20px 32px;
+  font-family: var(--font-main);
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: fit-content;
+  transition: all 0.3s ease;
+}
+
+.btn-primary-editorial:hover {
+  background-color: var(--color-ivory);
+  color: var(--color-charcoal);
+}
+
+.btn-secondary-editorial {
+  display: inline-flex;
+  align-items: center;
+  background-color: transparent;
+  color: var(--color-ivory);
+  padding: 8px 0;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-ivory);
+  width: fit-content;
+  transition: opacity 0.3s ease;
+}
+
+.btn-secondary-editorial:hover {
+  opacity: 0.7;
+}
+
+/* Desktop Asymmetric Layout */
+@media (min-width: 1024px) {
+  .final-cta-layout {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--grid-gutter-desktop);
+    align-items: center;
+  }
+
+  .final-cta-visual {
+    grid-column: 1 / 6; /* 5 columns out of 12 (41%) */
+  }
+
+  .final-cta-img-wrapper {
+    height: 520px;
+  }
+
+  .final-cta-content {
+    grid-column: 7 / 13; /* Starts at col 7 to create empty negative space gutter */
+  }
+
+  .final-cta-actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+  }
+  
+  .btn-secondary-editorial {
+    border-bottom: none;
+    padding: 0;
+  }
+  
+  .btn-secondary-editorial:hover {
+    border-bottom: 1px solid var(--color-ivory);
+  }
+}

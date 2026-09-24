@@ -1,0 +1,32 @@
+.mobile-whatsapp-persistent {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .mobile-whatsapp-persistent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    height: 56px;
+    background-color: var(--color-charcoal);
+    color: var(--color-ivory);
+    text-decoration: none;
+    z-index: 900; /* Stays below the nav overlay but above the page content */
+    box-shadow: 0 4px 12px rgba(13, 13, 13, 0.15);
+    transition: background-color 0.3s ease;
+  }
+
+  .mobile-whatsapp-persistent:hover {
+    background-color: var(--color-olive);
+  }
+
+  .whatsapp-icon-small {
+    width: 16px;
+    height: 16px;
+  }
+}

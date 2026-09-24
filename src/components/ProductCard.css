@@ -1,0 +1,256 @@
+/* Product Card - Clean, Seamless & Modern Typography */
+
+.editorial-product-card {
+  background: var(--color-ivory);
+  border: 1px solid var(--color-stone);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+  position: relative;
+}
+
+.editorial-product-card:hover {
+  border-color: var(--color-charcoal);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(27, 27, 25, 0.08);
+}
+
+/* Image Frame - 100% Blended with Card Background */
+.card-visual-frame {
+  position: relative;
+  background: transparent;
+  height: 225px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.75rem 0.25rem;
+  overflow: hidden;
+  border-bottom: none;
+}
+
+/* Top Floating Meta */
+.card-floating-meta {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 4;
+}
+
+.card-sku-badge {
+  font-family: var(--font-product);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--color-charcoal);
+  background: rgba(217, 211, 200, 0.6);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.card-moq-badge {
+  font-family: var(--font-product);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: var(--color-olive);
+  background: rgba(89, 96, 75, 0.1);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+/* Photo Switch Toggle */
+.card-photo-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  background: rgba(244, 240, 232, 0.95);
+  border: 1px solid var(--color-stone);
+  border-radius: 2px;
+  padding: 2px;
+  z-index: 4;
+}
+
+.photo-toggle-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-grey);
+  font-size: 0.6rem;
+  font-family: var(--font-product);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.photo-toggle-btn.active {
+  background: var(--color-charcoal);
+  color: var(--color-ivory);
+}
+
+/* Product Image Link & Image Styling */
+.card-img-link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.card-product-img {
+  max-width: 92%;
+  max-height: 92%;
+  object-fit: contain;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-product-img.img-cutout {
+  /* Blends seamlessly with background, no white box */
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 10px 16px rgba(27, 27, 25, 0.12));
+}
+
+.card-product-img.img-styled {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  mix-blend-mode: normal;
+  filter: none;
+}
+
+.editorial-product-card:hover .card-product-img {
+  transform: scale(1.05);
+}
+
+/* Clean Card Details */
+.card-body {
+  padding: 0.6rem 1rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  background: transparent;
+}
+
+/* Specs Line */
+.card-specs-line {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-product);
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--color-olive);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.spec-dot {
+  color: var(--color-stone);
+}
+
+.spec-custom-tag {
+  color: var(--color-charcoal);
+  background: rgba(27, 27, 25, 0.06);
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-size: 0.6rem;
+}
+
+/* Product Title - Clean Modern Sans */
+.card-title-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card-title {
+  font-family: var(--font-product);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-charcoal);
+  line-height: 1.25;
+  margin: 0;
+  letter-spacing: -0.01em;
+  transition: color 0.15s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-title-link:hover .card-title {
+  color: var(--color-olive);
+}
+
+/* WhatsApp Order Button */
+.btn-card-whatsapp {
+  background: var(--color-charcoal);
+  border: 1px solid var(--color-charcoal);
+  color: var(--color-ivory);
+  font-family: var(--font-product);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 9px 12px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0.25rem;
+}
+
+.btn-card-whatsapp:hover {
+  background: #1B8C4B;
+  border-color: #1B8C4B;
+  color: #FFFFFF;
+}
+
+/* Secondary Action Links */
+.card-secondary-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.4rem;
+  border-top: 1px solid rgba(217, 211, 200, 0.7);
+  margin-top: 0.15rem;
+}
+
+.btn-link-action {
+  background: none;
+  border: none;
+  font-family: var(--font-product);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  opacity: 0.75;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  padding: 2px 0;
+}
+
+.btn-link-action:hover {
+  opacity: 1;
+  color: var(--color-olive);
+}
+
+@media (max-width: 640px) {
+  .card-visual-frame {
+    height: 200px;
+  }
+}

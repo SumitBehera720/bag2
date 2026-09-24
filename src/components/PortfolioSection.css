@@ -1,0 +1,388 @@
+/* Fleet Portfolio Section - Enterprise Production Archive */
+
+.fleet-portfolio-section {
+  background-color: var(--color-ivory, #F4F0E8);
+  padding: 56px 0 68px;
+  color: var(--color-charcoal, #1B1B19);
+  border-bottom: 1px solid var(--color-stone, #D9D3C8);
+  position: relative;
+  overflow: visible;
+}
+
+/* Header Area */
+.fleet-portfolio-header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 36px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-stone, #D9D3C8);
+}
+
+.fleet-tagline {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--color-olive, #59604B);
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.fleet-portfolio-title {
+  font-family: var(--font-product, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
+  color: var(--color-charcoal, #1B1B19);
+}
+
+.fleet-portfolio-desc {
+  font-family: var(--font-main, sans-serif);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--color-charcoal, #1B1B19);
+  opacity: 0.8;
+  margin: 0;
+  max-width: 620px;
+}
+
+.header-right-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  align-items: center;
+}
+
+.meta-badge-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-charcoal, #1B1B19);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--color-stone, #D9D3C8);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.text-emerald {
+  color: #16A34A;
+}
+
+/* 4-Card Fleet Grid */
+.fleet-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+/* Individual Fleet Card */
+.fleet-card {
+  background: #FFFFFF;
+  border: 1px solid var(--color-stone, #D9D3C8);
+  border-radius: 8px;
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s ease;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(27, 27, 25, 0.03);
+}
+
+.fleet-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-charcoal, #1B1B19);
+  box-shadow: 0 14px 28px -6px rgba(27, 27, 25, 0.1);
+}
+
+/* Card Header */
+.fleet-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(217, 211, 200, 0.6);
+}
+
+.fleet-card-subtag {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--color-olive, #59604B);
+  font-weight: 700;
+}
+
+.fleet-client-name {
+  font-family: var(--font-product, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--color-charcoal, #1B1B19);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.fleet-volume-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  background: #FAF8F5;
+  border: 1px solid var(--color-stone, #D9D3C8);
+  padding: 3px 8px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #16A34A;
+  display: inline-block;
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.2);
+}
+
+.qty-value {
+  font-family: var(--font-product, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--color-charcoal, #1B1B19);
+}
+
+.status-label {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #16A34A;
+}
+
+/* Image Stage */
+.fleet-image-stage {
+  width: 100%;
+  height: 175px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 12px 0 10px;
+  background: radial-gradient(circle at 50% 55%, rgba(244, 240, 232, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.fleet-product-image {
+  max-width: 155px;
+  max-height: 155px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 2;
+}
+
+.fleet-card:hover .fleet-product-image {
+  transform: scale(1.05);
+}
+
+.pedestal-shadow {
+  position: absolute;
+  bottom: 8px;
+  left: 20%;
+  width: 60%;
+  height: 10px;
+  background: radial-gradient(ellipse at center, rgba(27, 27, 25, 0.18) 0%, rgba(27, 27, 25, 0) 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Item Details */
+.fleet-item-info {
+  margin-bottom: 12px;
+}
+
+.fleet-item-name {
+  font-family: var(--font-product, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-charcoal, #1B1B19);
+  margin: 0 0 2px;
+  line-height: 1.25;
+}
+
+.fleet-item-spec {
+  font-size: 0.72rem;
+  color: var(--color-olive, #59604B);
+  margin: 0;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+/* Technical Specs Deck */
+.fleet-specs-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #FAF8F5;
+  border: 1px solid rgba(217, 211, 200, 0.7);
+  border-radius: 4px;
+  padding: 8px 10px;
+  margin-bottom: 14px;
+  flex-grow: 1;
+}
+
+.spec-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.72rem;
+  line-height: 1.25;
+  border-bottom: 1px dashed rgba(217, 211, 200, 0.5);
+  padding-bottom: 4px;
+}
+
+.spec-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.spec-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.60rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-olive, #59604B);
+  flex-shrink: 0;
+}
+
+.spec-val {
+  font-family: var(--font-product, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-charcoal, #1B1B19);
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* RFQ Button */
+.btn-fleet-rfq {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--color-charcoal, #1B1B19);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-family: var(--font-product, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  margin-top: auto;
+}
+
+.btn-fleet-rfq:hover {
+  background: #25D366;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.28);
+}
+
+.rfq-arrow {
+  transition: transform 0.2s ease;
+}
+
+.btn-fleet-rfq:hover .rfq-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* Proof Strip */
+.fleet-bottom-proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px dashed var(--color-stone, #D9D3C8);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  color: var(--color-charcoal, #1B1B19);
+  font-weight: 600;
+}
+
+.proof-bullet {
+  color: var(--color-olive, #59604B);
+  font-weight: 900;
+  margin-right: 6px;
+}
+
+/* Tablet Layout (2x2 Grid) */
+@media (min-width: 640px) {
+  .fleet-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Desktop Layout (4 Columns Side-by-Side in 1 Viewport View) */
+@media (min-width: 1024px) {
+  .fleet-portfolio-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .fleet-cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .fleet-card {
+    padding: 18px 16px;
+  }
+
+  .fleet-image-stage {
+    height: 165px;
+  }
+
+  .fleet-product-image {
+    max-width: 145px;
+    max-height: 145px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .fleet-cards-grid {
+    gap: 22px;
+  }
+
+  .fleet-card {
+    padding: 22px 18px;
+  }
+
+  .fleet-image-stage {
+    height: 180px;
+  }
+
+  .fleet-product-image {
+    max-width: 160px;
+    max-height: 160px;
+  }
+}

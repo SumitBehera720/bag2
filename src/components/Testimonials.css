@@ -1,0 +1,95 @@
+/* Editorial Anti-Slop Testimonials */
+
+.testimonials-editorial-section {
+  background-color: #f6f4f0; /* Warm ivory */
+  color: #1a1a1a;
+  padding: 8rem 5%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.testimonials-container {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 4rem;
+}
+
+.testimonials-label {
+  font-family: var(--font-main);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: #888;
+  margin-bottom: 4rem;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 6rem;
+}
+
+/* Primary Quote */
+.quote-primary blockquote {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 3rem 0;
+  font-weight: 400;
+}
+
+/* Secondary Quotes */
+.quote-secondary-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding-top: 1rem;
+}
+
+.quote-secondary blockquote {
+  font-family: var(--font-main);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
+  color: #444;
+}
+
+/* Author Details */
+.quote-author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.author-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.author-context {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: #888;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials-editorial-section {
+    padding: 4rem 5%;
+  }
+  
+  .quote-primary blockquote {
+    font-size: 2rem;
+  }
+  
+  .quote-secondary blockquote {
+    font-size: 1.1rem;
+  }
+}

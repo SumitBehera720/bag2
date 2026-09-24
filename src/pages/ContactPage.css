@@ -1,0 +1,395 @@
+/* Contact Page - Ivory & Charcoal Editorial Aesthetic */
+
+.contact-page-wrapper {
+  background-color: var(--color-ivory);
+  color: var(--color-charcoal);
+  min-height: 100vh;
+  padding-top: calc(var(--header-height, 72px) + 30px);
+  padding-bottom: 120px;
+}
+
+.contact-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin-bottom: 80px;
+}
+
+.contact-text-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3.5rem, 7.5vw, 6.5rem);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+
+.contact-hero-desc {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  max-width: 480px;
+  color: var(--color-charcoal);
+  opacity: 0.85;
+}
+
+/* Direct WA Card */
+.contact-wa-direct-card {
+  margin-top: 2.5rem;
+  background: #FAF7F2;
+  border: 1px solid var(--color-stone);
+  padding: 1.75rem;
+  border-radius: 2px;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.wa-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.wa-card-icon {
+  color: var(--color-olive);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.wa-card-header h4 {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 400;
+  margin: 0 0 4px;
+  color: var(--color-charcoal);
+}
+
+.wa-card-header p {
+  font-size: 0.85rem;
+  color: var(--color-charcoal);
+  opacity: 0.8;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.btn-wa-direct {
+  width: fit-content;
+}
+
+/* Info Column */
+.contact-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Quick Dispatcher Form */
+.contact-quick-form {
+  background: #FFFFFF;
+  border: 1px solid var(--color-stone);
+  padding: 2rem;
+  border-radius: 2px;
+}
+
+.form-heading {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--color-olive);
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+}
+
+.inquiry-form-elements {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.form-group label {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--color-grey);
+  font-weight: 600;
+}
+
+.form-input, .form-select, .form-textarea {
+  background: #FAF7F2;
+  border: 1px solid var(--color-stone);
+  color: var(--color-charcoal);
+  font-family: var(--font-main);
+  font-size: 0.88rem;
+  padding: 10px 14px;
+  border-radius: 2px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  width: 100%;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--color-charcoal);
+}
+
+.form-group-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+.btn-submit-inquiry {
+  margin-top: 0.5rem;
+  width: 100%;
+  padding: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+/* Verified Contact Blocks */
+.contact-blocks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  background: #FAF7F2;
+  border: 1px solid var(--color-stone);
+  padding: 1.75rem;
+  border-radius: 2px;
+}
+
+.contact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-olive);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  margin: 0;
+  font-weight: 600;
+}
+
+.contact-value {
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.4;
+  color: var(--color-charcoal);
+}
+
+.contact-value-link {
+  font-size: 1rem;
+  color: var(--color-charcoal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+  font-weight: 500;
+}
+
+.contact-value-link:hover {
+  color: var(--color-olive);
+}
+
+/* Showcase Row: Cool & Attractive Client Fleet Showcase Grid */
+.contact-visual-row {
+  width: 100%;
+  margin-top: 3.5rem;
+}
+
+.contact-showcase-section {
+  background: #FFFFFF;
+  border: 1px solid var(--color-stone);
+  border-radius: 4px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.showcase-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-stone);
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.showcase-eyebrow {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--color-olive);
+  margin-bottom: 0.35rem;
+}
+
+.showcase-section-title {
+  font-family: var(--font-product, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+  font-weight: 700;
+  color: var(--color-charcoal);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.showcase-section-desc {
+  max-width: 420px;
+  font-size: 0.88rem;
+  color: var(--color-grey);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.contact-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.contact-showcase-card {
+  background: #FAF7F2;
+  border: 1px solid var(--color-stone);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.contact-showcase-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-charcoal);
+}
+
+.contact-card-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #F4EFE6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  overflow: hidden;
+}
+
+.contact-card-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  background: rgba(18, 18, 18, 0.85);
+  color: #FFFFFF;
+  backdrop-filter: blur(4px);
+  border-radius: 2px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.contact-card-stage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.12));
+  transition: transform 0.35s ease;
+}
+
+.contact-showcase-card:hover .contact-card-stage img {
+  transform: scale(1.05);
+}
+
+.contact-card-info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.contact-card-client {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--color-olive);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.contact-card-name {
+  font-family: var(--font-product, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-charcoal);
+  margin: 0 0 0.25rem 0;
+  line-height: 1.3;
+}
+
+.contact-card-run {
+  font-size: 0.72rem;
+  color: var(--color-grey);
+  letter-spacing: 0.04em;
+  margin-bottom: 1.25rem;
+}
+
+.btn-contact-quick-quote {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--color-charcoal);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 9px 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  font-family: var(--font-product, 'Plus Jakarta Sans', sans-serif);
+}
+
+.btn-contact-quick-quote:hover {
+  background: #25D366;
+  color: #FFFFFF;
+}
+
+@media (max-width: 1024px) {
+  .contact-showcase-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Desktop layout */
+@media (min-width: 1024px) {
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 4rem;
+  }
+}
