@@ -21,13 +21,16 @@ const Navbar = () => {
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
-    // Prevent scrolling when menu is open
+  }, [location]);
+
+  // Prevent scrolling when menu is open
+  useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-  }, [location, mobileMenuOpen]);
+  }, [mobileMenuOpen]);
 
   const navLinks = [
     { name: 'PRODUCTS', path: '/products' },

@@ -88,32 +88,38 @@
   top: 16px;
   right: 16px;
   display: flex;
-  background: rgba(244, 240, 232, 0.95);
+  align-items: center;
+  gap: 4px;
+  background: rgba(244, 240, 232, 0.94);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--color-stone);
   border-radius: 20px;
   padding: 3px;
   z-index: 10;
+  max-width: calc(100% - 32px);
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .detail-photo-toggle .toggle-btn {
   background: transparent;
   border: none;
   color: var(--color-grey);
-  font-size: 0.65rem;
-  font-family: var(--font-main);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  padding: 6px 12px;
-  border-radius: 16px;
+  font-size: 0.62rem;
+  font-family: var(--font-product, 'Poppins', sans-serif);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 5px 10px;
+  border-radius: 14px;
   cursor: pointer;
+  white-space: nowrap;
   transition: all 0.2s;
 }
 
 .detail-photo-toggle .toggle-btn.active {
   background: var(--color-charcoal);
-  color: var(--color-ivory);
+  color: #FFFFFF;
 }
 
 .detail-stage-badges {
@@ -123,52 +129,70 @@
 }
 
 .stage-badge {
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   letter-spacing: 0.08em;
   color: var(--color-grey);
-  background: rgba(244, 240, 232, 0.9);
+  background: rgba(244, 240, 232, 0.92);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   padding: 4px 8px;
-  border-radius: 2px;
+  border-radius: 3px;
   border: 1px solid var(--color-stone);
+  font-weight: 600;
 }
 
-/* Thumbnail Strip */
+/* Thumbnail Strip - Seamless, Contained, Auto-Fitting */
 .gallery-thumbnails {
   display: flex;
-  gap: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
 }
 
 .thumb-box {
-  width: 90px;
-  height: 80px;
+  width: 86px;
+  min-height: 84px;
+  height: auto;
   background: #FFFFFF;
   border: 1px solid var(--color-stone);
-  border-radius: 2px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 6px;
+  padding: 7px 6px;
   position: relative;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.02);
 }
 
 .thumb-box img {
-  max-width: 80%;
-  max-height: 50px;
+  width: 100%;
+  height: 48px;
   object-fit: contain;
+  margin-bottom: 5px;
 }
 
 .thumb-label {
-  font-size: 0.58rem;
-  color: var(--color-grey);
-  margin-top: 4px;
+  font-family: var(--font-product, 'Poppins', sans-serif);
+  font-size: 0.60rem;
+  font-weight: 600;
+  color: #666;
+  text-align: center;
+  line-height: 1.2;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
 
 .thumb-box.active {
   border-color: var(--color-charcoal);
   background: #FAF7F2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .thumb-box.active .thumb-label {
@@ -766,8 +790,97 @@
   }
   .action-row-split {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
   .btn-open-customizer {
     width: 100%;
   }
 }
+
+@media (max-width: 640px) {
+  .detail-stage-frame {
+    min-height: 320px;
+    height: auto;
+    padding: 2.5rem 1rem 1.5rem;
+  }
+
+  .detail-hero-img {
+    max-height: 320px;
+  }
+
+  .detail-photo-toggle {
+    top: 10px;
+    right: 10px;
+    max-width: calc(100% - 20px);
+    gap: 3px;
+    padding: 2px 4px;
+  }
+
+  .detail-photo-toggle .toggle-btn {
+    font-size: 0.56rem;
+    padding: 4px 8px;
+  }
+
+  .gallery-thumbnails {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: thin;
+    gap: 8px;
+  }
+
+  .thumb-box {
+    width: 76px;
+    min-height: 76px;
+    flex-shrink: 0;
+    padding: 6px 4px;
+  }
+
+  .thumb-box img {
+    height: 42px;
+  }
+
+  .thumb-label {
+    font-size: 0.55rem;
+  }
+
+  .product-title {
+    font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+  }
+
+  .breadcrumb-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .sku-breadcrumb {
+    margin-left: 0;
+  }
+
+  .qty-action-box {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .qty-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .qty-preset-btn {
+    flex: 1 1 calc(33.33% - 6px);
+    text-align: center;
+    padding: 6px 4px;
+    font-size: 0.70rem;
+  }
+
+  .btn-detail-order-wa {
+    font-size: 0.76rem;
+    padding: 13px 12px;
+    text-align: center;
+  }
+}
+

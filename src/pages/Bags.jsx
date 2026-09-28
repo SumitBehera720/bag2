@@ -69,7 +69,7 @@ const Bags = () => {
               Explore our core bag formats. Every piece is engineered structurally from the ground up, then customized around your specific use-case, brand, and quantity requirements.
             </p>
             <div className="sidebar-meta technical-text">
-              <span>ORDER FROM 1 UNIT // NO MOQ</span>
+              <span>MINIMUM ORDER: 50 UNITS (MOQ)</span>
               <span>AVERAGE PRODUCTION: 4 WEEKS</span>
             </div>
           </div>

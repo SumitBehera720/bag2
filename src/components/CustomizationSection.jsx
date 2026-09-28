@@ -46,7 +46,7 @@ const CustomizationSection = () => {
           <div className="custom-eyebrow technical-text">
             <span>02 // BESPOKE OEM &amp; ODM PRODUCTION</span>
             <span className="custom-moq-pill">
-              <CheckCircle2 size={12} /> NO MOQ &bull; ORDER FROM 1 UNIT
+              <CheckCircle2 size={12} /> MINIMUM ORDER 50 UNITS (MOQ)
             </span>
           </div>
           <h2 className="customization-title">

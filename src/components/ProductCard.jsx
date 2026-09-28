@@ -1,13 +1,37 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MessageCircle, Sliders, ArrowUpRight, Package } from 'lucide-react';
 import { buildWhatsAppUrl, generateProductOrderMessage, generateBulkQuoteMessage } from '../config';
 import './ProductCard.css';
 
-const ProductCard = ({ product, onOpenCustomizer }) => {
-  const [photoView, setPhotoView] = useState('cutout'); // 'cutout' or 'styled'
+const getShortAngleLabel = (label) => {
+  if (!label) return 'VIEW';
+  const lower = label.toLowerCase();
+  if (lower.includes('front')) return 'FRONT';
+  if (lower.includes('3/4') || lower.includes('angle') || lower.includes('perspective')) return '3/4';
+  if (lower.includes('harness') || lower.includes('back') || lower.includes('strap')) return 'BACK';
+  if (lower.includes('top') || lower.includes('zipper')) return 'TOP';
+  if (lower.includes('side') || lower.includes('profile')) return 'SIDE';
+  if (lower.includes('dual')) return 'DUAL';
+  if (lower.includes('single')) return 'SINGLE';
+  return label.split(' ')[0].toUpperCase();
+};
 
-  const currentImg = photoView === 'cutout' ? product.cutoutImage : (product.styledImage || product.cutoutImage);
+const ProductCard = ({ product, onOpenCustomizer }) => {
+  const navigate = useNavigate();
+
+  // Set a flag so Products page knows to restore scroll when this navigation returns
+  const goToProduct = (e) => {
+    e.preventDefault();
+    try { sessionStorage.setItem('abag_restore_products_scroll', 'true'); } catch (_) {}
+    navigate(`/products/${product.id}`);
+  };
+  const availableImages = (Array.isArray(product.images) && product.images.length > 0)
+    ? product.images
+    : [{ label: 'Studio View', url: product.cutoutImage || product.defaultImage }];
+
+  const [activeImgIndex, setActiveImgIndex] = useState(0);
+  const currentImg = availableImages[activeImgIndex]?.url || product.cutoutImage || product.defaultImage;
 
   const handleWhatsAppQuickOrder = (e) => {
     e.preventDefault();
@@ -15,7 +39,7 @@ const ProductCard = ({ product, onOpenCustomizer }) => {
     const message = generateProductOrderMessage({
       productName: product.name,
       sku: product.sku,
-      quantity: product.minOrder,
+      quantity: Math.max(50, product.minOrder || 50),
       color: product.colorOptions?.[0]?.name || 'Classic Black',
       material: product.materials?.[0] || '1000D Tactical Cordura'
     });
@@ -45,38 +69,40 @@ const ProductCard = ({ product, onOpenCustomizer }) => {
         {/* Top Badges */}
         <div className="card-floating-meta">
           <span className="card-sku-badge">{product.sku}</span>
-          <span className="card-moq-badge">FROM 1 PC</span>
+          <span className="card-moq-badge">MOQ 50 PCS</span>
         </div>
 
-        {/* Studio / Styled Toggle */}
-        <div className="card-photo-toggle" onClick={(e) => e.stopPropagation()}>
-          <button 
-            type="button"
-            className={`photo-toggle-btn ${photoView === 'cutout' ? 'active' : ''}`}
-            onClick={() => setPhotoView('cutout')}
-            title="Studio View"
-          >
-            STUDIO
-          </button>
-          <button 
-            type="button"
-            className={`photo-toggle-btn ${photoView === 'styled' ? 'active' : ''}`}
-            onClick={() => setPhotoView('styled')}
-            title="Real Client Photo"
-          >
-            CLIENT
-          </button>
-        </div>
+        {/* Multi-Angle Toggle (Positioned at bottom of frame to eliminate any badge collisions) */}
+        {availableImages.length > 1 && (
+          <div className="card-photo-toggle" onClick={(e) => e.stopPropagation()}>
+            {availableImages.map((img, idx) => (
+              <button 
+                key={idx}
+                type="button"
+                className={`photo-toggle-btn ${activeImgIndex === idx ? 'active' : ''}`}
+                onClick={() => setActiveImgIndex(idx)}
+                title={img.label}
+              >
+                {getShortAngleLabel(img.label)}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Product Image */}
-        <Link to={`/products/${product.id}`} className="card-img-link" title={`View ${product.name}`}>
+        <a
+          href={`/products/${product.id}`}
+          className="card-img-link"
+          title={`View ${product.name}`}
+          onClick={goToProduct}
+        >
           <img 
             src={currentImg} 
-            alt={product.name} 
-            className={`card-product-img ${photoView === 'styled' ? 'img-styled' : 'img-cutout'}`}
+            alt={`${product.name} - ${availableImages[activeImgIndex]?.label || 'Product View'}`} 
+            className="card-product-img img-cutout"
             loading="lazy"
           />
-        </Link>
+        </a>
       </div>
 
       {/* Clean Card Details */}
@@ -92,9 +118,13 @@ const ProductCard = ({ product, onOpenCustomizer }) => {
         </div>
 
         {/* Modern Sans-Serif Title */}
-        <Link to={`/products/${product.id}`} className="card-title-link">
+        <a
+          href={`/products/${product.id}`}
+          className="card-title-link"
+          onClick={goToProduct}
+        >
           <h3 className="card-title" title={product.name}>{product.name}</h3>
-        </Link>
+        </a>
 
         {/* Primary WhatsApp Order Button */}
         <button 
@@ -129,10 +159,15 @@ const ProductCard = ({ product, onOpenCustomizer }) => {
             <span>Bulk Quote</span>
           </button>
 
-          <Link to={`/products/${product.id}`} className="btn-link-action" title="View technical specifications">
+          <a
+            href={`/products/${product.id}`}
+            className="btn-link-action"
+            title="View technical specifications"
+            onClick={goToProduct}
+          >
             <span>Specs</span>
             <ArrowUpRight size={13} />
-          </Link>
+          </a>
         </div>
 
       </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
   ArrowLeft, 
   MessageCircle, 
@@ -9,25 +9,82 @@ import {
   Check, 
   Sparkles
 } from 'lucide-react';
-import { getProductById, PRODUCTS } from '../data/productsData';
+import { useProducts } from '../hooks/useProducts';
+import { useSmoothScroll } from '../components/SmoothScroll';
 import { buildWhatsAppUrl, generateProductOrderMessage, generateBulkQuoteMessage } from '../config';
 import ProductCustomizerModal from '../components/ProductCustomizerModal';
+import ProductAnatomy from '../components/ProductAnatomy';
 import FadeIn from '../components/FadeIn';
 import './ProductDetail.css';
 
+const getCleanAnglePillLabel = (label) => {
+  if (!label) return 'VIEW';
+  const lower = label.toLowerCase();
+  if (lower.includes('front')) return 'FRONT';
+  if (lower.includes('3/4') || lower.includes('perspective') || lower.includes('angle')) return '3/4 ANGLE';
+  if (lower.includes('harness') || lower.includes('back') || lower.includes('strap')) return 'HARNESS / BACK';
+  if (lower.includes('top') || lower.includes('zipper')) return 'TOP ACCESS';
+  if (lower.includes('side') || lower.includes('profile')) return 'SIDE VIEW';
+  if (lower.includes('dual')) return 'DUAL ZIP';
+  if (lower.includes('single')) return 'SINGLE ZIP';
+  return label.toUpperCase();
+};
+
+const getCleanThumbLabel = (label) => {
+  if (!label) return 'View';
+  const lower = label.toLowerCase();
+  if (lower.includes('front')) return 'Front';
+  if (lower.includes('3/4') || lower.includes('perspective') || lower.includes('angle')) return '3/4 Angle';
+  if (lower.includes('harness') || lower.includes('back') || lower.includes('strap')) return 'Harness';
+  if (lower.includes('top') || lower.includes('zipper')) return 'Top View';
+  if (lower.includes('side') || lower.includes('profile')) return 'Side View';
+  if (lower.includes('dual')) return 'Dual';
+  if (lower.includes('single')) return 'Single';
+  return label;
+};
+
 const ProductDetail = () => {
   const { id } = useParams();
-  const [activeImgMode, setActiveImgMode] = useState('cutout'); // 'cutout' or 'styled'
+  const navigate = useNavigate();
   const [isCustomizerOpen, setIsCustomizerOpen] = useState(false);
-  const [orderQty, setOrderQty] = useState(1);
+  const [orderQty, setOrderQty] = useState(50);
+  const { lenis } = useSmoothScroll();
+
+  // Navigate back to catalog and request scroll restoration
+  const handleBackToProducts = (e) => {
+    e.preventDefault();
+    try { sessionStorage.setItem('abag_restore_products_scroll', 'true'); } catch (_) {}
+    navigate('/products');
+  };
+
+  const { products: PRODUCTS = [], loading } = useProducts();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [id, lenis]);
+
+  const getProductById = (searchId) => PRODUCTS.find(p => p.id === searchId || p.string_id === searchId || String(p.id) === String(searchId));
+  const product = getProductById(id) || PRODUCTS[0] || {};
+
+  const availableImages = (Array.isArray(product.images) && product.images.length > 0)
+    ? product.images
+    : [{ label: 'Studio View', url: product.cutoutImage || product.defaultImage || '' }];
+
+  const [activeImgIndex, setActiveImgIndex] = useState(0);
+
+  // Reset image index when product id changes
+  useEffect(() => {
+    setActiveImgIndex(0);
   }, [id]);
 
-  const product = getProductById(id) || PRODUCTS[0];
+  if (loading && PRODUCTS.length === 0) return <div className="product-detail-page"><div className="editorial-container">Loading...</div></div>;
 
-  const activeImage = activeImgMode === 'cutout' ? product.cutoutImage : (product.styledImage || product.cutoutImage);
+  const activeImage = availableImages[activeImgIndex]?.url || product.cutoutImage || product.defaultImage;
 
   const handleWhatsAppOrder = () => {
     const message = generateProductOrderMessage({
@@ -55,9 +112,9 @@ const ProductDetail = () => {
       <div className="detail-top-nav">
         <div className="editorial-container">
           <div className="breadcrumb-row technical-text">
-            <Link to="/products" className="back-link">
+            <a href="/products" className="back-link" onClick={handleBackToProducts}>
               <ArrowLeft size={14} /> BACK TO PRODUCTS CATALOGUE
-            </Link>
+            </a>
             <span className="sku-breadcrumb">ARCHIVE // {product.sku}</span>
           </div>
         </div>
@@ -72,50 +129,51 @@ const ProductDetail = () => {
             {/* Main Stage Image Frame */}
             <div className="detail-stage-frame">
               
-              {/* Photo Mode Switcher */}
-              <div className="detail-photo-toggle">
-                <button 
-                  className={`toggle-btn ${activeImgMode === 'cutout' ? 'active' : ''}`}
-                  onClick={() => setActiveImgMode('cutout')}
-                >
-                  STUDIO CUTOUT
-                </button>
-                <button 
-                  className={`toggle-btn ${activeImgMode === 'styled' ? 'active' : ''}`}
-                  onClick={() => setActiveImgMode('styled')}
-                >
-                  IN-SITU LIFESTYLE
-                </button>
-              </div>
+              {/* Photo Mode Switcher (When multiple genuine angles exist) */}
+              {availableImages.length > 1 && (
+                <div className="detail-photo-toggle">
+                  {availableImages.map((img, idx) => (
+                    <button 
+                      key={idx}
+                      className={`toggle-btn ${activeImgIndex === idx ? 'active' : ''}`}
+                      onClick={() => setActiveImgIndex(idx)}
+                      title={img.label}
+                    >
+                      {getCleanAnglePillLabel(img.label)}
+                    </button>
+                  ))}
+                </div>
+              )}
 
               <img 
                 src={activeImage} 
-                alt={product.name} 
-                className={`detail-hero-img ${activeImgMode === 'styled' ? 'is-styled' : ''}`}
+                alt={`${product.name} - ${availableImages[activeImgIndex]?.label || 'Product Angle'}`} 
+                className="detail-hero-img"
               />
 
               <div className="detail-stage-badges">
-                <span className="stage-badge technical-text">FIG 01 // PRODUCTION ARCHIVE</span>
+                <span className="stage-badge technical-text">
+                  {getCleanAnglePillLabel(availableImages[activeImgIndex]?.label)} // {product.sku}
+                </span>
               </div>
             </div>
 
             {/* Thumbnail Strip */}
-            <div className="gallery-thumbnails">
-              <div 
-                className={`thumb-box ${activeImgMode === 'cutout' ? 'active' : ''}`}
-                onClick={() => setActiveImgMode('cutout')}
-              >
-                <img src={product.cutoutImage} alt="Cutout view" />
-                <span className="technical-text thumb-label">STUDIO</span>
+            {availableImages.length > 1 && (
+              <div className="gallery-thumbnails">
+                {availableImages.map((img, idx) => (
+                  <div 
+                    key={idx}
+                    className={`thumb-box ${activeImgIndex === idx ? 'active' : ''}`}
+                    onClick={() => setActiveImgIndex(idx)}
+                    title={img.label}
+                  >
+                    <img src={img.url} alt={img.label} />
+                    <span className="technical-text thumb-label">{getCleanThumbLabel(img.label)}</span>
+                  </div>
+                ))}
               </div>
-              <div 
-                className={`thumb-box ${activeImgMode === 'styled' ? 'active' : ''}`}
-                onClick={() => setActiveImgMode('styled')}
-              >
-                <img src={product.styledImage || product.cutoutImage} alt="Styled view" />
-                <span className="technical-text thumb-label">LIFESTYLE</span>
-              </div>
-            </div>
+            )}
 
             {/* Customization Teaser Card */}
             <div className="customizer-teaser-box">
@@ -163,7 +221,7 @@ const ProductDetail = () => {
                   </div>
                   <div className="metric-cell">
                     <span className="metric-label">MIN ORDER</span>
-                    <span className="metric-val">1 UNIT (NO MOQ)</span>
+                    <span className="metric-val">50 UNITS (MOQ)</span>
                   </div>
                   <div className="metric-cell">
                     <span className="metric-label">LEAD TIME</span>
@@ -171,11 +229,11 @@ const ProductDetail = () => {
                   </div>
                 </div>
 
-                {/* Quantity Selector: Order from 1 piece */}
+                {/* Quantity Selector: Order from 50 pieces */}
                 <div className="detail-qty-container">
                   <div className="qty-headline-row">
                     <span className="qty-tag-label technical-text">SELECT QUANTITY:</span>
-                    <span className="qty-tag-badge technical-text">NO MINIMUM &bull; ORDER 1 OR FLEET</span>
+                    <span className="qty-tag-badge technical-text">MINIMUM ORDER: 50 UNITS (MOQ)</span>
                   </div>
                   
                   <div className="qty-action-box">
@@ -183,25 +241,25 @@ const ProductDetail = () => {
                       <button 
                         type="button" 
                         className="qty-btn"
-                        onClick={() => setOrderQty(prev => Math.max(1, prev - 1))}
+                        onClick={() => setOrderQty(prev => Math.max(50, prev - 10))}
                         aria-label="Decrease quantity"
                       >
                         -
                       </button>
                       <input 
                         type="number" 
-                        min="1" 
+                        min="50" 
                         value={orderQty} 
                         onChange={(e) => {
                           const val = parseInt(e.target.value, 10);
-                          setOrderQty(isNaN(val) || val < 1 ? 1 : val);
+                          setOrderQty(isNaN(val) || val < 50 ? 50 : val);
                         }}
                         className="qty-val-input" 
                       />
                       <button 
                         type="button" 
                         className="qty-btn"
-                        onClick={() => setOrderQty(prev => prev + 1)}
+                        onClick={() => setOrderQty(prev => prev + 10)}
                         aria-label="Increase quantity"
                       >
                         +
@@ -209,14 +267,14 @@ const ProductDetail = () => {
                     </div>
 
                     <div className="qty-presets">
-                      {[1, 5, 25, 50, 100, 250].map((q) => (
+                      {[50, 100, 250, 500, 1000].map((q) => (
                         <button 
                           key={q}
                           type="button"
                           className={`qty-preset-btn ${orderQty === q ? 'active' : ''}`}
                           onClick={() => setOrderQty(q)}
                         >
-                          {q === 1 ? '1 PC (SAMPLE)' : `${q} PCS`}
+                          {q} PCS
                         </button>
                       ))}
                     </div>
@@ -227,7 +285,7 @@ const ProductDetail = () => {
                 <div className="detail-action-buttons">
                   <button className="btn-detail-order-wa" onClick={handleWhatsAppOrder}>
                     <MessageCircle size={18} />
-                    <span>ORDER {orderQty} {orderQty === 1 ? 'UNIT (SAMPLE READY)' : 'UNITS'} ON WHATSAPP</span>
+                    <span>ORDER {orderQty} UNITS ON WHATSAPP (MOQ: 50)</span>
                   </button>
 
                   <div className="action-row-split">
@@ -287,7 +345,12 @@ const ProductDetail = () => {
           </div>
 
         </div>
+      </div>
 
+      {/* Product Anatomy & Architectural Schematic Section */}
+      <ProductAnatomy product={product} />
+
+      <div className="editorial-container">
         {/* Related Products Grid */}
         {relatedProducts.length > 0 && (
           <div className="related-products-section">

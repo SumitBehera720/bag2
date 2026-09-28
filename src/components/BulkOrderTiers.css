@@ -1,0 +1,245 @@
+/* ==========================================================================
+   BULK ORDER & FLEET TIERS (EXECUTIVE ATELIER COMMISSION CARDS)
+   ========================================================================== */
+
+.bulk-order-section {
+  background-color: #f3ede4;
+  padding: 5rem 0 6rem;
+  border-top: 1px solid rgba(217, 211, 200, 0.7);
+  border-bottom: 1px solid rgba(217, 211, 200, 0.7);
+}
+
+.bulk-section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3.5rem;
+}
+
+.bulk-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: #a35d33;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.bulk-title {
+  font-family: var(--font-product, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #1a1a19;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem 0;
+}
+
+.bulk-subtitle {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #55504a;
+  margin: 0;
+}
+
+/* 3-Column Responsive Grid */
+.bulk-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .bulk-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1080px) {
+  .bulk-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Individual Card */
+.bulk-tier-card {
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid rgba(217, 211, 200, 0.5);
+  box-shadow: 0 10px 30px -4px rgba(27, 27, 25, 0.04);
+  padding: 2.25rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.bulk-tier-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px -6px rgba(27, 27, 25, 0.08);
+}
+
+/* Featured / Most Requested Middle Card */
+.bulk-tier-card.featured-card {
+  border: 2px solid #a35d33;
+  box-shadow: 0 16px 40px -4px rgba(163, 93, 51, 0.12);
+}
+
+.bulk-tier-card.featured-card:hover {
+  box-shadow: 0 22px 50px -4px rgba(163, 93, 51, 0.2);
+}
+
+/* Top Pill Badge */
+.tier-badge-row {
+  margin-bottom: 1.25rem;
+}
+
+.tier-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.badge-default {
+  background: #f0eee9;
+  color: #55504a;
+}
+
+.badge-featured {
+  background: #a35d33;
+  color: #ffffff;
+}
+
+.badge-enterprise {
+  background: #1c1917;
+  color: #ffffff;
+}
+
+/* Tier Header Content */
+.tier-header-content {
+  margin-bottom: 1.25rem;
+}
+
+.tier-subtitle-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #8a857e;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.tier-units-heading {
+  font-family: var(--font-product, 'Plus Jakarta Sans', sans-serif);
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #1a1a19;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem 0;
+}
+
+.tier-allowance-highlight {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #a35d33;
+  margin-bottom: 0.35rem;
+}
+
+.tier-production-window {
+  font-size: 0.85rem;
+  color: #6a645d;
+  line-height: 1.4;
+}
+
+/* Thin Divider */
+.tier-divider {
+  border: none;
+  border-top: 1px solid #eae5dc;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Features List */
+.tier-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1 1 auto;
+}
+
+.tier-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #3d3a36;
+}
+
+.tier-check-icon {
+  color: #a35d33;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Button */
+.tier-cta-wrap {
+  margin-top: auto;
+}
+
+.btn-tier-inquire {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 20px;
+  border-radius: 12px;
+  font-family: var(--font-product, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-tier-inquire.btn-dark {
+  background: #1c1917;
+  color: #ffffff;
+}
+
+.btn-tier-inquire.btn-dark:hover {
+  background: #2e2a28;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(28, 25, 23, 0.25);
+}
+
+.btn-tier-inquire.btn-accent {
+  background: #a35d33;
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(163, 93, 51, 0.28);
+}
+
+.btn-tier-inquire.btn-accent:hover {
+  background: #8e4e28;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(163, 93, 51, 0.38);
+}
+
+.btn-inquire-arrow {
+  transition: transform 0.2s ease;
+}
+
+.btn-tier-inquire:hover .btn-inquire-arrow {
+  transform: translate(2px, -2px);
+}

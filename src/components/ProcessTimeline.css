@@ -7,22 +7,29 @@
   color: var(--color-charcoal, #1B1B19);
   padding: 72px 0 80px;
   border-bottom: 1px solid var(--color-charcoal, #1B1B19);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .process-header {
   margin-bottom: 40px;
   max-width: 820px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .process-eyebrow {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   color: var(--color-olive, #59604B);
   margin-bottom: 12px;
   flex-wrap: wrap;
+  max-width: 100%;
 }
 
 .process-badge {
@@ -39,12 +46,14 @@
 
 .process-title {
   font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
-  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-size: clamp(2rem, 4.5vw, 3.8rem);
   font-weight: 800;
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: -0.02em;
   margin: 0 0 14px 0;
   text-transform: uppercase;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 .process-intro {
@@ -52,18 +61,22 @@
   line-height: 1.6;
   color: rgba(27, 27, 25, 0.8);
   margin: 0;
+  max-width: 100%;
 }
 
 /* 2-Column Grid Layout */
 .process-interactive-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 36px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 1024px) {
   .process-interactive-grid {
-    grid-template-columns: 1.1fr 1fr;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
     gap: 44px;
     align-items: start;
   }
@@ -75,8 +88,16 @@
 }
 
 /* Left Column: Image Frame & HUD */
+.process-stage-viewport {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
 .process-image-card {
   width: 100%;
+  max-width: 100%;
   height: 440px;
   background-color: #111110;
   border-radius: 6px;
@@ -84,6 +105,7 @@
   position: relative;
   border: 1px solid var(--color-charcoal, #1B1B19);
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .stage-featured-photo {
@@ -113,6 +135,7 @@
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
+  max-width: calc(100% - 28px);
 }
 
 .hud-phase-tag {
@@ -159,7 +182,16 @@
   gap: 8px;
   margin-top: 14px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  padding: 2px 2px 6px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.process-stepper-dots::-webkit-scrollbar {
+  display: none;
 }
 
 .stepper-dot-btn {
@@ -167,14 +199,15 @@
   background: #FAF8F5;
   border: 1px solid var(--color-stone, #D9D3C8);
   border-radius: 4px;
-  padding: 8px 10px;
+  padding: 8px 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2px;
   cursor: pointer;
   transition: all 0.2s;
-  min-width: 68px;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .stepper-dot-btn:hover {
@@ -198,6 +231,7 @@
 .stepper-dot-name {
   font-size: 0.66rem;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .stepper-dot-btn.active .stepper-dot-name {
@@ -209,6 +243,10 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .stage-step-card {
@@ -218,6 +256,9 @@
   padding: 16px 20px;
   cursor: pointer;
   transition: all 0.2s ease;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .stage-step-card:hover {
@@ -282,13 +323,88 @@
   padding-left: 36px;
 }
 
+/* Responsive adjustments */
 @media (max-width: 768px) {
+  .process-editorial-section {
+    padding: 44px 0 54px;
+  }
+
+  .process-header {
+    margin-bottom: 24px;
+  }
+
+  .process-title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  .process-intro {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .process-interactive-grid {
+    gap: 24px;
+  }
+
   .process-image-card {
-    height: 300px;
+    height: 250px;
+  }
+
+  .stage-photo-hud {
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    gap: 6px;
+    max-width: calc(100% - 16px);
+  }
+
+  .hud-phase-tag {
+    font-size: 0.58rem;
+    padding: 4px 8px;
+  }
+
+  .hud-metric-pill {
+    font-size: 0.58rem;
+    padding: 4px 8px;
+  }
+
+  .process-stepper-dots {
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .stepper-dot-btn {
+    padding: 6px 4px;
+    min-width: 50px;
+  }
+
+  .stepper-dot-num {
+    font-size: 0.58rem;
+  }
+
+  .stepper-dot-name {
+    font-size: 0.6rem;
+  }
+
+  /* Prevent cards from pushing off-screen on active */
+  .stage-step-card:hover,
+  .stage-step-card.active {
+    transform: none;
+  }
+
+  .stage-step-card {
+    padding: 12px 14px;
+  }
+
+  .step-card-title {
+    font-size: 0.84rem;
   }
 
   .step-card-desc {
     padding-left: 0;
     margin-top: 6px;
+    font-size: 0.75rem;
   }
 }

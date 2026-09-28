@@ -63,36 +63,51 @@
   border-radius: 2px;
 }
 
-/* Photo Switch Toggle */
+/* Photo Switch Toggle (Positioned at bottom center of frame - zero collision with top badges) */
 .card-photo-toggle {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  background: rgba(244, 240, 232, 0.95);
+  align-items: center;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: 1px solid var(--color-stone);
-  border-radius: 2px;
-  padding: 2px;
-  z-index: 4;
+  border-radius: 20px;
+  padding: 2px 4px;
+  gap: 3px;
+  z-index: 5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-width: 90%;
+  overflow-x: auto;
 }
 
 .photo-toggle-btn {
   background: transparent;
   border: none;
   color: var(--color-grey);
-  font-size: 0.6rem;
-  font-family: var(--font-product);
+  font-size: 0.58rem;
+  font-family: var(--font-product, 'Poppins', sans-serif);
   font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 2px 6px;
-  border-radius: 2px;
+  letter-spacing: 0.05em;
+  padding: 3px 7px;
+  border-radius: 12px;
   cursor: pointer;
+  white-space: nowrap;
   transition: all 0.15s ease;
+  line-height: 1;
 }
 
 .photo-toggle-btn.active {
   background: var(--color-charcoal);
-  color: var(--color-ivory);
+  color: #FFFFFF;
+}
+
+.photo-toggle-btn:hover:not(.active) {
+  color: var(--color-charcoal);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 /* Product Image Link & Image Styling */
@@ -251,6 +266,52 @@
 
 @media (max-width: 640px) {
   .card-visual-frame {
-    height: 200px;
+    height: 150px;
+    padding: 0.5rem 0.5rem 0.25rem;
+  }
+  
+  .card-body {
+    padding: 0.5rem 0.75rem 0.75rem;
+  }
+
+  .card-sku-badge, .card-moq-badge {
+    font-size: 0.55rem;
+    padding: 1px 4px;
+  }
+
+  .card-specs-line {
+    font-size: 0.55rem;
+    flex-wrap: wrap;
+    gap: 3px;
+  }
+
+  .spec-custom-tag {
+    font-size: 0.5rem;
+  }
+
+  .card-title {
+    font-size: 0.85rem;
+  }
+
+  .btn-card-whatsapp {
+    font-size: 0.65rem;
+    padding: 6px 8px;
+    gap: 4px;
+  }
+  
+  .btn-card-whatsapp svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .card-secondary-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding-top: 0.5rem;
+  }
+
+  .btn-link-action {
+    font-size: 0.65rem;
   }
 }

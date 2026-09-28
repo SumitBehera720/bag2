@@ -1,0 +1,299 @@
+/* ==========================================================================
+   HERO SCROLL-DRIVEN ATELIER EXPERIENCE STYLES (CLEAN & CINEMATIC)
+   ========================================================================== */
+
+.hero-scroll-track {
+  position: relative;
+  width: 100%;
+  height: 250vh; /* Perfectly paced scrub duration for 10.0s film */
+  background-color: #121211;
+}
+
+/* Viewport Pinned during Scrub */
+.hero-pinned-viewport {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: var(--header-height, 72px);
+  color: #f4f0e8;
+  z-index: 10;
+}
+
+/* Ambient Grid */
+.hero-atelier-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  background-size: 64px 64px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* ==========================================================================
+   STAGE CONTENT (CINEMATIC LEFT NARRATIVE)
+   ========================================================================== */
+
+.hero-stage-content {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  padding: 1.5rem 0;
+  margin: auto 0;
+}
+
+.narrative-content-wrap {
+  max-width: 740px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.stage-eyebrow-row {
+  margin-bottom: 0.85rem;
+}
+
+.stage-index-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #d4824d;
+  background: rgba(163, 93, 51, 0.16);
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(163, 93, 51, 0.35);
+}
+
+.hero-main-title {
+  font-family: var(--font-heading, 'Poppins', sans-serif);
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  text-transform: uppercase;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.8);
+}
+
+.title-line {
+  display: inline;
+}
+
+.chapter-subtitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #f4f0e8;
+  margin: 0 0 0.85rem 0;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.chapter-narrative-copy {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #d9d3c8;
+  margin: 0 0 1.75rem 0;
+  max-width: 620px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+/* Call to Action Group */
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #a35d33;
+  color: #ffffff;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 24px rgba(163, 93, 51, 0.4);
+}
+
+.btn-hero-primary:hover {
+  background: #b56a3c;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(163, 93, 51, 0.55);
+}
+
+.btn-hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.btn-hero-secondary:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.btn-hero-tertiary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #d9d3c8;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  padding: 10px 14px;
+  transition: color 0.2s ease;
+}
+
+.btn-hero-tertiary:hover {
+  color: #ffffff;
+}
+
+/* Proof Marks */
+.hero-proof-marks {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.proof-mark-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #c5bfb4;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.proof-icon {
+  color: #22c55e;
+}
+
+/* ==========================================================================
+   BOTTOM SCROLL CUE
+   ========================================================================== */
+
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  background: linear-gradient(to top, rgba(14, 14, 13, 0.85) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.cue-mouse {
+  width: 16px;
+  height: 26px;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 4px;
+}
+
+.cue-wheel {
+  width: 2px;
+  height: 6px;
+  background: #a35d33;
+  border-radius: 2px;
+  animation: mouseWheel 1.6s ease-in-out infinite;
+}
+
+@keyframes mouseWheel {
+  0% { opacity: 0; transform: translateY(0); }
+  40% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(8px); }
+}
+
+.cue-text {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: #b0aaa0;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .hero-scroll-track {
+    height: 200vh;
+  }
+
+  .hero-telemetry-bar {
+    padding: 0.85rem 1.25rem;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .hero-main-title {
+    font-size: 2.1rem;
+    line-height: 1.12;
+    margin-bottom: 0.75rem;
+  }
+
+  .chapter-subtitle {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .chapter-narrative-copy {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    padding: 12px 16px;
+  }
+
+  .hero-scroll-cue {
+    padding: 0.75rem;
+  }
+}

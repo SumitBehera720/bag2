@@ -1,0 +1,101 @@
+/* ==========================================================================
+   PRODUCTION SCROLL VIDEO STYLES (CRISP & VIBRANT)
+   ========================================================================== */
+
+.scroll-video-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  background-color: #121211;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.scroll-video-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.02);
+  will-change: transform;
+}
+
+/* Subtle Legibility Scrim (Preserves Video Brilliance while keeping text razor sharp) */
+.scroll-video-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: 
+    linear-gradient(
+      to right,
+      rgba(14, 14, 13, 0.75) 0%,
+      rgba(14, 14, 13, 0.5) 45%,
+      rgba(14, 14, 13, 0.15) 80%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to top,
+      rgba(14, 14, 13, 0.8) 0%,
+      transparent 35%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(14, 14, 13, 0.6) 0%,
+      transparent 25%
+    );
+  z-index: 2;
+}
+
+/* Minimal Loading Indicator */
+.scroll-video-loader {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 8px 16px;
+  background: rgba(24, 24, 22, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: #d9d3c8;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+}
+
+.loader-spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(163, 93, 51, 0.3);
+  border-top-color: #a35d33;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.scroll-video-fallback-notice {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20, 20, 20, 0.8);
+  color: #a35d33;
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  z-index: 10;
+}

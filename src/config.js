@@ -1,14 +1,18 @@
 // ASKMEBAG Central Configuration
 export const COMPANY_CONFIG = {
   name: 'ASKMEBAG',
+  tradeName: 'ASKMEBAG',
+  gstNo: '27AEOPI4410A1ZZ',
   tagline: 'CUSTOM BAGS. BUILT AROUND YOUR IDEA.',
-  // Update this to your real WhatsApp business number (with country code, no + or spaces)
-  whatsappNumber: '919890060000',
-  whatsappDisplay: '+91 98900 60000',
-  email: 'studio@askmebag.com',
-  location: 'Pune / Mumbai, India',
-  leadTimeDefault: '2-4 Weeks',
-  minOrderDefault: 1,
+  // Official WhatsApp Business Number for direct order taking (+91 90044 08854)
+  whatsappNumber: '919004408854',
+  whatsappDisplay: '+91 90044 08854',
+  email: 'askmebag@gmail.com',
+  address: 'Parasnath Complex, Bldg B-13, Gala No 108, First Floor, Dapode Road, Bhiwandi, Mumbai - 421302, Maharashtra, India',
+  shortAddress: 'Bhiwandi, Mumbai - 421302, India',
+  location: 'Bhiwandi, Mumbai, India',
+  leadTimeDefault: '2-3 Weeks',
+  minOrderDefault: 50,
 };
 
 /**
@@ -26,7 +30,7 @@ export const buildWhatsAppUrl = (message, number = COMPANY_CONFIG.whatsappNumber
 export const generateProductOrderMessage = ({
   productName,
   sku,
-  quantity = 1,
+  quantity = 50,
   color = 'Custom Brand Palette / Pantone',
   material = 'Tactical Cordura 1000D',
   brandingMethod = '3D Embroidery / High-Density Print',

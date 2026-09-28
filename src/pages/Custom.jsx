@@ -7,155 +7,211 @@ import {
   CheckCircle2, 
   ShieldCheck, 
   Copy, 
-  Layers, 
   ArrowRight,
+  ArrowLeft,
   Sliders,
   Sparkles,
-  Tag
+  Layers,
+  Building2,
+  MapPin,
+  Clock,
+  Phone,
+  Mail,
+  ChevronRight
 } from 'lucide-react';
-import { buildWhatsAppUrl } from '../config';
+import { COMPANY_CONFIG, buildWhatsAppUrl } from '../config';
 import './CustomPage.css';
 
-// 5 Broad Categories to give diverse product options
+// 5 Curated Categories for Custom Production
 const CUSTOM_CATEGORIES = [
   { id: 'all', name: 'ALL FORMATS' },
   { id: 'backpacks', name: 'BACKPACKS' },
   { id: 'laptop', name: 'LAPTOP BRIEFS' },
   { id: 'duffels', name: 'DUFFELS & TRAVEL' },
-  { id: 'slings', name: 'SLINGS & EDC' },
-  { id: 'totes', name: 'TOTES' }
+  { id: 'slings', name: 'SLINGS & EDC' }
 ];
 
-// Curated DIRECT FRONT-FACING CENTER Models
+// Curated DIRECT FRONT-FACING Models (Only genuine front angles suitable for live branding)
 const CURATED_MODELS = [
   // Backpacks
   { 
     id: 'amb-03', 
     category: 'backpacks',
     name: 'Tactical Modular Daypack AM-03', 
-    capacity: '28L', 
+    capacity: '30L', 
     tag: 'TACTICAL / AIR-MESH',
     dimensions: '48 × 32 × 18 cm',
-    desc: 'Dual-compartment daypack with laser-cut MOLLE webbing and contoured harness.',
-    img: '/products/cutout/3.png'
+    desc: 'High-capacity workhorse with laser-cut MOLLE webbing and contoured air-mesh harness.',
+    primaryImg: '/products/cutout/3.png',
+    angles: [
+      { label: 'Front View', url: '/products/cutout/3.png' },
+      { label: '3/4 Profile', url: '/products/cutout/4.png' }
+    ]
   },
   { 
-    id: 'amb-09', 
+    id: 'amb-01', 
     category: 'backpacks',
-    name: 'Signature Corporate Carrier AM-09', 
-    capacity: '26L', 
-    tag: 'CORPORATE FLEET',
+    name: 'Executive Tech Daypack AM-01', 
+    capacity: '28L', 
+    tag: 'EXECUTIVE FLEET',
     dimensions: '46 × 31 × 16 cm',
-    desc: 'Executive tech carrier with padded laptop vault and concealed zip compartments.',
-    img: '/products/cutout/9.png'
+    desc: 'Clean corporate commuter with dedicated tech stash chamber and structured upright base.',
+    primaryImg: '/products/cutout/1.png',
+    angles: [
+      { label: 'Front View', url: '/products/cutout/1.png' }
+    ]
   },
   { 
-    id: 'amb-20', 
+    id: 'amb-02', 
     category: 'backpacks',
-    name: 'Field Commuter Daypack AM-20', 
-    capacity: '25L', 
-    tag: 'FIELD TEAMS',
-    dimensions: '45 × 30 × 17 cm',
-    desc: 'Lightweight high-tenacity pack with reflective safety accents and bar-tack anchors.',
-    img: '/products/cutout/20.png'
+    name: 'Dual-Tone Daily Commuter AM-02', 
+    capacity: '26L', 
+    tag: 'URBAN COMMUTE',
+    dimensions: '45 × 30 × 16 cm',
+    desc: 'Aerodynamic dual-tone silhouette with charcoal upper panel and high-density padding.',
+    primaryImg: '/products/cutout/2.png',
+    angles: [
+      { label: 'Front View', url: '/products/cutout/2.png' }
+    ]
   },
   { 
-    id: 'amb-08', 
+    id: 'amb-06', 
     category: 'backpacks',
-    name: 'Reinforced Cargo Pack AM-08', 
+    name: 'Heavy-Duty Field Backpack AM-06', 
     capacity: '32L', 
-    tag: 'HEAVY CAPACITY',
-    dimensions: '50 × 34 × 20 cm',
-    desc: 'Heavy cargo carrier engineered for equipment teams and outdoor field gear.',
-    img: '/products/cutout/8.png'
-  },
-
-  // Laptop Briefcases
-  { 
-    id: 'amb-10', 
-    category: 'laptop',
-    name: 'Executive Messenger Brief AM-10', 
-    capacity: '16L', 
-    tag: 'EXECUTIVE BRIEF',
-    dimensions: '40 × 30 × 12 cm',
-    desc: 'Padded 15.6" laptop messenger with trolley pass-through sleeve and leather handle.',
-    img: '/products/cutout/10.png'
+    tag: 'INDUSTRIAL GEAR',
+    dimensions: '50 × 33 × 20 cm',
+    desc: 'Rugged twin-compartment pack built for field engineers, heavy tools, and on-site technicians.',
+    primaryImg: '/products/cutout/6.png',
+    angles: [
+      { label: 'Front View', url: '/products/cutout/6.png' }
+    ]
   },
   { 
     id: 'amb-11', 
-    category: 'laptop',
-    name: 'Corporate Document Briefcase AM-11', 
-    capacity: '14L', 
-    tag: 'FORMAL ATTACHE',
-    dimensions: '39 × 29 × 10 cm',
-    desc: 'Slim structured portfolio brief with organizer chambers and waterproof zip closure.',
-    img: '/products/cutout/11.png'
+    category: 'backpacks',
+    name: 'Computer World Tech Pack AM-11', 
+    capacity: '28L', 
+    tag: 'IT ONBOARDING',
+    dimensions: '47 × 31 × 17 cm',
+    desc: 'High-tenacity corporate backpack with padded 15.6" laptop vault and organizer chambers.',
+    primaryImg: '/products/cutout/14.png',
+    angles: [
+      { label: 'Front View', url: '/products/cutout/14.png' },
+      { label: '3/4 Angle', url: '/products/cutout/13.png' }
+    ]
   },
   { 
-    id: 'amb-16', 
+    id: 'amb-13', 
+    category: 'backpacks',
+    name: 'Vanguard Tech Daypack AM-13', 
+    capacity: '27L', 
+    tag: 'CONTRAST PIPING',
+    dimensions: '46 × 30 × 16 cm',
+    desc: 'Dynamic contrast-piped commuter with ergonomic spinal ventilation and suspension bumpers.',
+    primaryImg: '/products/cutout/16.png',
+    angles: [
+      { label: 'Front View', url: '/products/cutout/16.png' },
+      { label: 'Back Harness', url: '/products/styled/16.png' }
+    ]
+  },
+
+  // Laptop Briefs
+  { 
+    id: 'amb-08', 
     category: 'laptop',
-    name: 'Tech Shield Attache AM-16', 
+    name: 'Executive Structured Attache AM-08', 
+    capacity: '16L', 
+    tag: 'EXECUTIVE BRIEF',
+    dimensions: '42 × 31 × 12 cm',
+    desc: 'Premium horizontal laptop brief with reinforced handles, shoulder strap, and luggage sleeve.',
+    primaryImg: '/products/styled/8.png',
+    angles: [
+      { label: 'Front View', url: '/products/styled/8.png' },
+      { label: '3/4 Angle', url: '/products/styled/10.png' }
+    ]
+  },
+  { 
+    id: 'amb-09', 
+    category: 'laptop',
+    name: 'Poojara Document Briefcase AM-09', 
     capacity: '15L', 
-    tag: 'SHOCKPROOF CARRY',
-    dimensions: '41 × 30 × 11 cm',
-    desc: 'High-density EVA foam cushioned carrier for laptops, tablets, and chargers.',
-    img: '/products/cutout/16.png'
+    tag: 'FORMAL ATTACHE',
+    dimensions: '40 × 30 × 11 cm',
+    desc: 'Structured formal briefcase with contrast piped trim, dual handles, and document partition.',
+    primaryImg: '/products/cutout/10.png',
+    angles: [
+      { label: 'Front View', url: '/products/cutout/10.png' }
+    ]
   },
 
   // Duffels & Travel
   { 
-    id: 'amb-43', 
+    id: 'amb-26', 
     category: 'duffels',
-    name: 'Pro Expedition Transit Duffel AM-43', 
+    name: 'Heavy Transit Series Duffel AM-26', 
     capacity: '42L', 
     tag: 'EXPEDITION / TRAVEL',
-    dimensions: '58 × 34 × 30 cm',
-    desc: 'Heavy-duty weatherproof travel duffel with reinforced base and backpack straps.',
-    img: '/products/cutout/43.png'
+    dimensions: '58 × 32 × 30 cm',
+    desc: 'Heavy-duty cylindrical travel duffel with wrap-around webbing handles and shoulder strap.',
+    primaryImg: '/products/cutout/31.png',
+    angles: [
+      { label: 'Studio Front', url: '/products/cutout/31.png' }
+    ]
   },
   { 
-    id: 'amb-35', 
+    id: 'amb-28', 
     category: 'duffels',
-    name: 'Heavy Transit Series Duffel AM-35', 
-    capacity: '35L', 
-    tag: 'ATHLETIC FLEET',
-    dimensions: '52 × 30 × 28 cm',
-    desc: 'Cylindrical team duffel with ventilated shoe compartment and duffel harness.',
-    img: '/products/cutout/35.png'
+    name: 'Coca-Cola Expedition Red Duffel AM-28', 
+    capacity: '38L', 
+    tag: 'BRAND PROMOTION',
+    dimensions: '54 × 30 × 28 cm',
+    desc: 'Bold vibrant promotional sports duffel engineered for volume branded client merchandise.',
+    primaryImg: '/products/cutout/34.png',
+    angles: [
+      { label: 'Studio View', url: '/products/cutout/34.png' }
+    ]
   },
 
   // Slings & EDC
   { 
-    id: 'amb-27', 
+    id: 'amb-07', 
     category: 'slings',
-    name: 'Ascent Tactical Sling AM-27', 
+    name: 'TVS Mobility Crossbody Sling AM-07', 
+    capacity: '9L', 
+    tag: 'MOBILITY EDC',
+    dimensions: '30 × 20 × 9 cm',
+    desc: 'Compact vertical crossbody organizer engineered for technicians and mobile personnel.',
+    primaryImg: '/products/cutout/9.png',
+    angles: [
+      { label: 'Front View', url: '/products/cutout/9.png' }
+    ]
+  },
+  { 
+    id: 'amb-10', 
+    category: 'slings',
+    name: 'M-Plast Heavy Utility Sling AM-10', 
     capacity: '8L', 
-    tag: 'TACTICAL EDC',
-    dimensions: '32 × 20 × 10 cm',
-    desc: 'Ergonomic cross-body tactical swing pack with ambidextrous strap buckle.',
-    img: '/products/cutout/27.png'
+    tag: 'EQUIPMENT CARRY',
+    dimensions: '30 × 19 × 8 cm',
+    desc: 'Engineered 12" x 7.5" equipment carry sling with external measurement callout.',
+    primaryImg: '/products/cutout/5.png',
+    angles: [
+      { label: 'Front View', url: '/products/cutout/5.png' }
+    ]
   },
   { 
-    id: 'amb-30', 
+    id: 'amb-25', 
     category: 'slings',
-    name: 'Everyday Mobility Crossbody AM-30', 
-    capacity: '6L', 
-    tag: 'URBAN COMMUTE',
-    dimensions: '28 × 18 × 8 cm',
-    desc: 'Minimalist weather-resistant sling pack for passport, phone, and daily essentials.',
-    img: '/products/cutout/30.png'
-  },
-
-  // Totes
-  { 
-    id: 'amb-21', 
-    category: 'totes',
-    name: 'Heavy Canvas Utility Tote AM-21', 
-    capacity: '20L', 
-    tag: 'CONFERENCE FLEET',
-    dimensions: '42 × 38 × 14 cm',
-    desc: '16oz heavy cotton duck canvas tote with dual shoulder handles and interior zip pouch.',
-    img: '/products/cutout/21.png'
+    name: 'Tactical Compact Sling Carrier AM-25', 
+    capacity: '9L', 
+    tag: 'QUICK-SWING EDC',
+    dimensions: '31 × 20 × 10 cm',
+    desc: 'Single-strap quick-swing sling bag tested for on-site facility staff and coordinators.',
+    primaryImg: '/products/cutout/30.png',
+    angles: [
+      { label: 'Front View', url: '/products/cutout/30.png' }
+    ]
   }
 ];
 
@@ -186,18 +242,17 @@ const BRANDING_METHODS = [
   }
 ];
 
-// Mathematically Centered Placement Zones for Front-Facing Bags
 const LOGO_POSITIONS = [
-  { id: 'center', label: 'Front Center', top: '58%', left: '50%' },
-  { id: 'upper', label: 'Upper Center', top: '34%', left: '50%' },
-  { id: 'mid', label: 'Mid-Body Crest', top: '46%', left: '50%' },
-  { id: 'lower_right', label: 'Lower Right', top: '65%', left: '60%' },
-  { id: 'upper_left', label: 'Upper Left Chest', top: '35%', left: '40%' }
+  { id: 'center', label: 'Front Center', top: '56%', left: '50%' },
+  { id: 'upper', label: 'Upper Panel', top: '34%', left: '50%' },
+  { id: 'crest', label: 'Chest Crest', top: '44%', left: '50%' },
+  { id: 'lower_right', label: 'Lower Right Corner', top: '65%', left: '60%' },
+  { id: 'upper_left', label: 'Upper Left Pocket', top: '35%', left: '40%' }
 ];
 
 const MATERIAL_OPTIONS = [
-  { name: 'Tactical Cordura 1000D', note: 'Heavy water-repellent industrial weave' },
-  { name: 'Ballistic Nylon 1680D', note: 'Maximum abrasion resistance for fleets' },
+  { name: 'Tactical Cordura 1000D', note: 'Heavy water-repellent industrial weave (Fleet Standard)' },
+  { name: 'Ballistic Nylon 1680D', note: 'Maximum abrasion resistance for heavy duty gear' },
   { name: 'Recycled Ocean RPET 900D', note: 'Eco-certified sustainable waterproof ripstop' },
   { name: 'Heavy Cotton Canvas 16oz', note: 'Natural organic heritage aesthetic' }
 ];
@@ -216,7 +271,14 @@ const FEATURE_ADDONS = [
   'Hidden Anti-Theft Passport Pocket'
 ];
 
-const QUICK_QUANTITIES = [1, 10, 25, 50, 100, 250, 500, 1000];
+const QUICK_QUANTITIES = [50, 100, 250, 500, 1000];
+
+const STEPS = [
+  { num: 1, label: '01. SILHOUETTE', subtitle: 'Select Bag Model' },
+  { num: 2, label: '02. BRANDING & LOGO', subtitle: 'Apply Logo & Method' },
+  { num: 3, label: '03. FABRIC & TRIMS', subtitle: 'Materials & Hardware' },
+  { num: 4, label: '04. VOLUME & ORDER', subtitle: 'MOQ 50 & WhatsApp RFQ' }
+];
 
 const Custom = () => {
   useEffect(() => {
@@ -224,8 +286,12 @@ const Custom = () => {
   }, []);
 
   // Studio States
+  const [activeStep, setActiveStep] = useState(1);
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedModel, setSelectedModel] = useState(CURATED_MODELS[0]);
+  const [activeAngleIndex, setActiveAngleIndex] = useState(0);
+
+  // Customization States
   const [brandingMethod, setBrandingMethod] = useState(BRANDING_METHODS[0].name);
   const [logoPosition, setLogoPosition] = useState(LOGO_POSITIONS[0]);
   const [logoText, setLogoText] = useState('YOUR BRAND');
@@ -238,16 +304,22 @@ const Custom = () => {
     FEATURE_ADDONS[0],
     FEATURE_ADDONS[2]
   ]);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(50);
   const [notes, setNotes] = useState('');
   const [copied, setCopied] = useState(false);
+
+  // When model changes, reset angle
+  const handleSelectModel = (model) => {
+    setSelectedModel(model);
+    setActiveAngleIndex(0);
+  };
 
   // Filter models by category
   const filteredModels = activeCategory === 'all' 
     ? CURATED_MODELS 
     : CURATED_MODELS.filter(m => m.category === activeCategory);
 
-  // Upload handler
+  // Handle file upload
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -273,23 +345,27 @@ const Custom = () => {
     );
   };
 
-  // WhatsApp Order Submission
+  // WhatsApp Order Submission directly to +91 90044 08854
   const handleSendWhatsAppOrder = () => {
     const message = [
-      `*ASKMEBAG // LIVE CUSTOM STUDIO ORDER*`,
+      `*ASKMEBAG ORDER TAKING // CUSTOM STUDIO SPECIFICATION*`,
       `━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
-      `🎒 *Base Silhouette:* ${selectedModel.name}`,
-      `📐 *Dimensions / Vol:* ${selectedModel.capacity} (${selectedModel.dimensions})`,
-      `🎨 *Fabric Grade:* ${selectedMaterial}`,
-      `🏷️ *Branding Method:* ${brandingMethod}`,
-      `📍 *Logo Position:* ${logoPosition.label}`,
-      `✏️ *Brand Reference:* ${logoImage ? 'Custom Logo File Uploaded' : `"${logoText}"`}`,
-      `🔧 *Hardware Grade:* ${hardware}`,
-      `⚙️ *Custom Trims:* ${selectedFeatures.length > 0 ? selectedFeatures.join(', ') : 'Standard Base'}`,
-      `📦 *Order Volume:* ${quantity} ${quantity === 1 ? 'UNIT (PROTOTYPE SAMPLE)' : 'UNITS'}`,
+      `🏢 *Trade Name:* ${COMPANY_CONFIG.tradeName}`,
+      `📋 *GSTIN:* ${COMPANY_CONFIG.gstNo}`,
+      `🏭 *Manufacturing Facility:* ${COMPANY_CONFIG.shortAddress}`,
       `━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
-      notes ? `📝 *Client Notes:* ${notes}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` : '',
-      `Hi ASKMEBAG team, I configured this custom bag in your online studio. Please share production quotation, CAD spec sheet, and sample dispatch timeline.`
+      `🎒 *Selected Silhouette:* ${selectedModel.name}`,
+      `📐 *Dimensions / Volume:* ${selectedModel.capacity} (${selectedModel.dimensions})`,
+      `🎨 *Outer Fabric Grade:* ${selectedMaterial}`,
+      `🏷️ *Embellishment Technique:* ${brandingMethod}`,
+      `📍 *Branding Placement:* ${logoPosition.label}`,
+      `✏️ *Brand Identification:* ${logoImage ? 'Custom Vector Logo File Ready' : `Wordmark: "${logoText}"`}`,
+      `🔧 *Zipper & Hardware:* ${hardware}`,
+      `⚙️ *Custom Engineering Trims:* ${selectedFeatures.length > 0 ? selectedFeatures.join(', ') : 'Standard Base'}`,
+      `📦 *Order Quantity Required:* ${quantity} Units (MOQ: 50 PCS)`,
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+      notes ? `📝 *Special Production Brief:* ${notes}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` : '',
+      `Hello ASKMEBAG Team, I customized this bag on your live web studio. Please review this specification and share production quote, CAD digital render, and sample prototyping timeline on this WhatsApp number.`
     ].join('\n');
 
     window.open(buildWhatsAppUrl(message), '_blank', 'noopener,noreferrer');
@@ -297,13 +373,14 @@ const Custom = () => {
 
   const handleCopySpec = () => {
     const summary = `ASKMEBAG Custom Specification:
-Silhouette: ${selectedModel.name} (${selectedModel.capacity})
+Model: ${selectedModel.name} (${selectedModel.capacity} - ${selectedModel.dimensions})
 Fabric: ${selectedMaterial}
 Branding: ${brandingMethod} @ ${logoPosition.label}
 Brand Mark: ${logoImage ? 'Uploaded Custom Logo' : logoText}
 Hardware: ${hardware}
 Features: ${selectedFeatures.join(', ')}
-Quantity: ${quantity} ${quantity === 1 ? 'unit sample' : 'units fleet'}
+Quantity: ${quantity} units (MOQ: 50)
+GSTIN: ${COMPANY_CONFIG.gstNo} | Manufacturer: ${COMPANY_CONFIG.shortAddress}
 ${notes ? `Notes: ${notes}` : ''}`;
 
     navigator.clipboard.writeText(summary);
@@ -311,7 +388,6 @@ ${notes ? `Notes: ${notes}` : ''}`;
     setTimeout(() => setCopied(false), 2500);
   };
 
-  // Visual class for branding preview
   const getTechniqueClass = () => {
     if (brandingMethod.includes('Embroidery')) return 'technique-embroidery';
     if (brandingMethod.includes('Screen')) return 'technique-screen';
@@ -320,64 +396,126 @@ ${notes ? `Notes: ${notes}` : ''}`;
     return '';
   };
 
+  const currentDisplayImg = selectedModel.angles?.[activeAngleIndex]?.url || selectedModel.primaryImg;
+
   return (
     <div className="custom-studio-page">
       
-      {/* Studio Header */}
+      {/* Studio Compact Editorial Header */}
       <header className="custom-studio-hero">
         <div className="editorial-container">
-          <div className="hero-breadcrumbs technical-text">
-            <span>FACTORY CUSTOM STUDIO // OEM &amp; ODM PRODUCTION</span>
-            <span className="no-moq-badge">
-              <CheckCircle2 size={13} /> ORDER FROM 1 PIECE PROTOTYPE TO VOLUME FLEETS
-            </span>
+          <div className="studio-hero-top-row">
+            <div className="hero-left">
+              <div className="hero-meta-badges technical-text">
+                <span className="badge-gst">
+                  <ShieldCheck size={13} /> GSTIN: <strong>{COMPANY_CONFIG.gstNo}</strong>
+                </span>
+                <span className="badge-moq">
+                  <CheckCircle2 size={13} /> MINIMUM ORDER: 50 UNITS (MOQ: 50 PCS)
+                </span>
+                <span className="badge-facility">
+                  <MapPin size={12} /> BHIWANDI, MUMBAI WORKS
+                </span>
+              </div>
+              <h1 className="hero-headline">
+                LIVE CUSTOMIZATION STUDIO
+              </h1>
+              <p className="hero-subline">
+                Direct OEM &amp; ODM Bag Manufacturing. Select a production silhouette, apply your brand logo in real-time, specify materials, and dispatch orders directly to our WhatsApp production desk.
+              </p>
+            </div>
+
+            <div className="hero-right-cta">
+              <a 
+                href={buildWhatsAppUrl("Hello ASKMEBAG, I want to discuss custom bag manufacturing.")}
+                target="_blank"
+                rel="noreferrer"
+                className="studio-header-wa-btn technical-text"
+              >
+                <MessageCircle size={15} />
+                <span>HOTLINE: {COMPANY_CONFIG.whatsappDisplay}</span>
+              </a>
+            </div>
           </div>
-          
-          <h1 className="hero-headline">
-            LIVE CUSTOMIZATION STUDIO.
-          </h1>
-          
-          <p className="hero-subline">
-            Select any direct front-facing production silhouette, apply your brand logo, customize materials and hardware, and request physical sampling or volume fleet quotes.
-          </p>
         </div>
       </header>
 
-      {/* Main Interactive Studio */}
+      {/* Main Studio Workbench Container */}
       <div className="editorial-container">
-        <div className="studio-layout">
+        
+        {/* Interactive Step Navigator Tabs */}
+        <div className="studio-steps-nav">
+          {STEPS.map((step) => {
+            const isActive = activeStep === step.num;
+            const isCompleted = activeStep > step.num;
+            return (
+              <button
+                key={step.num}
+                type="button"
+                className={`step-nav-tab ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}`}
+                onClick={() => setActiveStep(step.num)}
+              >
+                <div className="step-tab-num">
+                  {isCompleted ? <Check size={12} /> : step.num}
+                </div>
+                <div className="step-tab-info">
+                  <span className="step-tab-title technical-text">{step.label}</span>
+                  <span className="step-tab-subtitle">{step.subtitle}</span>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* 2-Column Unified Studio Workbench */}
+        <div className="studio-workbench-grid">
           
-          {/* LEFT COLUMN: Centered Visual Stage */}
-          <div className="studio-left-col">
-            <div className="studio-stage-card">
+          {/* ========================================================
+              LEFT COLUMN: Live 3D Visual Stage (Persistent & Sticky)
+              ======================================================== */}
+          <div className="studio-stage-column">
+            <div className="studio-stage-panel">
               
-              {/* Stage Top Status Bar */}
-              <div className="stage-top-bar">
-                <div className="stage-meta-left technical-text">
+              {/* Top Stage Bar */}
+              <div className="stage-top-meta">
+                <div className="stage-tag technical-text">
                   <span className="live-dot"></span>
                   <span>{selectedModel.tag} // {selectedModel.capacity}</span>
                 </div>
-                <div className="stage-status-pill technical-text">
-                  <span>FRONT-FACING VIEW</span>
-                </div>
+
+                {/* Angle Selector (when genuine angles exist for this model) */}
+                {selectedModel.angles && selectedModel.angles.length > 1 ? (
+                  <div className="stage-angles-switch">
+                    {selectedModel.angles.map((ang, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        className={`angle-btn ${activeAngleIndex === idx ? 'active' : ''}`}
+                        onClick={() => setActiveAngleIndex(idx)}
+                      >
+                        {ang.label.toUpperCase()}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <span className="stage-view-indicator technical-text">FRONT VIEW</span>
+                )}
               </div>
 
-              {/* Centered Bag Visual Arena */}
-              <div className="stage-viewport">
-                <div className="stage-bag-contain-stage">
-                  
-                  {/* Front-Facing Centered Bag Image */}
+              {/* Bag Visual Stage Arena */}
+              <div className="stage-canvas-box">
+                <div className="stage-bag-wrapper">
                   <img 
-                    key={selectedModel.id}
-                    src={selectedModel.img} 
+                    key={currentDisplayImg}
+                    src={currentDisplayImg} 
                     alt={selectedModel.name} 
-                    className="stage-main-bag"
+                    className="stage-bag-render"
                   />
                   <div className="stage-pedestal-shadow"></div>
 
-                  {/* Centered Bounded Logo Overlay */}
+                  {/* Dynamic Logo / Wordmark Embellishment Overlay */}
                   <div 
-                    className={`stage-logo-layer ${getTechniqueClass()}`}
+                    className={`stage-logo-overlay ${getTechniqueClass()}`}
                     style={{
                       top: logoPosition.top,
                       left: logoPosition.left,
@@ -385,377 +523,513 @@ ${notes ? `Notes: ${notes}` : ''}`;
                     }}
                   >
                     {logoImage ? (
-                      <img src={logoImage} alt="User Custom Logo" className="user-logo-img" />
+                      <img src={logoImage} alt="Brand Logo Mockup" className="custom-uploaded-logo" />
                     ) : (
-                      <div className="placeholder-brand-box">
-                        <span className="brand-wordmark">{logoText || 'YOUR LOGO'}</span>
+                      <div className="custom-brand-wordmark-box">
+                        <span className="brand-wordmark-text">{logoText || 'YOUR LOGO'}</span>
                       </div>
                     )}
                   </div>
-
                 </div>
               </div>
 
-              {/* Logo Fine-Tuning Bar */}
-              <div className="stage-tuning-bar">
-                <div className="tuning-control">
-                  <span className="tuning-label technical-text">SCALE: {logoScale}%</span>
+              {/* Logo Fine-Tuning Controls */}
+              <div className="stage-adjust-bar">
+                <div className="adjust-control">
+                  <span className="adjust-label technical-text">SIZE: {logoScale}%</span>
                   <input 
                     type="range" 
                     min="65" 
-                    max="150" 
+                    max="140" 
                     value={logoScale} 
                     onChange={(e) => setLogoScale(Number(e.target.value))}
-                    className="tuning-slider"
+                    className="adjust-range-slider"
                   />
                 </div>
-                <div className="tuning-control">
-                  <span className="tuning-label technical-text">ROTATE: {logoRotate}°</span>
+                <div className="adjust-control">
+                  <span className="adjust-label technical-text">ROTATION: {logoRotate}°</span>
                   <input 
                     type="range" 
-                    min="-25" 
-                    max="25" 
+                    min="-20" 
+                    max="20" 
                     value={logoRotate} 
                     onChange={(e) => setLogoRotate(Number(e.target.value))}
-                    className="tuning-slider"
+                    className="adjust-range-slider"
                   />
                 </div>
                 <button 
                   type="button" 
-                  className="btn-tuning-reset technical-text"
+                  className="btn-adjust-reset"
                   onClick={handleResetLogo}
                   title="Reset placement & scale"
                 >
-                  <RotateCcw size={12} /> RESET
+                  <RotateCcw size={13} />
                 </button>
               </div>
 
-              {/* Stage Specs Summary */}
-              <div className="stage-footer-tags technical-text">
-                <span className="footer-tag">{selectedModel.name}</span>
-                <span className="footer-tag">{brandingMethod}</span>
-                <span className="footer-tag highlight">
-                  {quantity} {quantity === 1 ? 'UNIT SAMPLE' : 'UNITS FLEET'}
-                </span>
+              {/* Real-Time Configuration Spec Summary */}
+              <div className="stage-specs-summary">
+                <div className="summary-row">
+                  <span className="summary-key technical-text">MODEL</span>
+                  <span className="summary-val">{selectedModel.name}</span>
+                </div>
+                <div className="summary-row">
+                  <span className="summary-key technical-text">FABRIC</span>
+                  <span className="summary-val">{selectedMaterial}</span>
+                </div>
+                <div className="summary-row">
+                  <span className="summary-key technical-text">EMBELLISHMENT</span>
+                  <span className="summary-val">{brandingMethod} ({logoPosition.label})</span>
+                </div>
+                <div className="summary-row highlight">
+                  <span className="summary-key technical-text">ORDER QUANTITY</span>
+                  <span className="summary-val">{quantity} Units (MOQ: 50 PCS)</span>
+                </div>
+              </div>
+
+              {/* Stage Direct WhatsApp Order Action */}
+              <div className="stage-action-buttons">
+                <button 
+                  type="button" 
+                  className="btn-stage-wa-order"
+                  onClick={handleSendWhatsAppOrder}
+                  title="Send spec to WhatsApp (+91 90044 08854)"
+                >
+                  <MessageCircle size={17} />
+                  <span>ORDER ON WHATSAPP (+91 90044 08854)</span>
+                </button>
+                <button 
+                  type="button" 
+                  className="btn-stage-copy-spec"
+                  onClick={handleCopySpec}
+                  title="Copy technical specification"
+                >
+                  {copied ? <Check size={14} className="text-emerald" /> : <Copy size={14} />}
+                  <span>{copied ? 'SPECS COPIED' : 'COPY SPEC'}</span>
+                </button>
+              </div>
+
+              {/* Manufacturing Certification Strip */}
+              <div className="stage-trust-strip technical-text">
+                <ShieldCheck size={13} className="text-emerald" />
+                <span>DIRECT OEM FACTORY • FREE 3D DIGITAL MOCKUP • PHYSICAL SAMPLE INCLUDED</span>
               </div>
 
             </div>
-
-            {/* Quality Assurance Card */}
-            <div className="studio-assurance-box">
-              <ShieldCheck size={20} className="assurance-check" />
-              <div className="assurance-info">
-                <span className="assurance-lead technical-text">PHYSICAL SAMPLING BEFORE PRODUCTION</span>
-                <p>
-                  Every order includes 2D/3D CAD blueprint approval, fabric swatch verification, and physical sampling (5–7 days) before bulk cutting.
-                </p>
-              </div>
-            </div>
-
           </div>
 
-          {/* RIGHT COLUMN: Intuitive 4-Step Configuration Deck */}
-          <div className="studio-right-col">
+          {/* ========================================================
+              RIGHT COLUMN: Interactive Step Deck (Organized & Compact)
+              ======================================================== */}
+          <div className="studio-controls-column">
             
-            {/* STEP 1: SILHOUETTE & MODEL (With Diverse Product Options) */}
-            <div className="studio-config-card">
-              <div className="card-heading">
-                <span className="step-tag technical-text">STEP 01 // SILHOUETTE &amp; PRODUCT OPTIONS</span>
-                <h3 className="step-title">Choose Your Bag Model</h3>
-                <p className="step-desc">
-                  Select a product format below to get ideas. Every model is engineered from scratch and customized to your specifications.
-                </p>
-              </div>
-
-              {/* Category Filter Pills */}
-              <div className="category-filter-pills">
-                {CUSTOM_CATEGORIES.map(cat => (
-                  <button
-                    key={cat.id}
-                    type="button"
-                    className={`cat-pill ${activeCategory === cat.id ? 'active' : ''}`}
-                    onClick={() => setActiveCategory(cat.id)}
-                  >
-                    {cat.name}
-                  </button>
-                ))}
-              </div>
-
-              {/* Models Grid Selector */}
-              <div className="models-select-grid">
-                {filteredModels.map((m) => {
-                  const isSelected = selectedModel.id === m.id;
-                  return (
-                    <div 
-                      key={m.id}
-                      className={`model-select-card ${isSelected ? 'active' : ''}`}
-                      onClick={() => setSelectedModel(m)}
-                    >
-                      <div className="model-thumb-box">
-                        <img src={m.img} alt={m.name} loading="lazy" />
-                      </div>
-                      <div className="model-meta-box">
-                        <span className="model-cat-tag technical-text">{m.tag}</span>
-                        <h4 className="model-select-name">{m.name}</h4>
-                        <span className="model-vol-pill technical-text">{m.capacity}</span>
-                      </div>
-                      {isSelected && (
-                        <div className="model-selected-check">
-                          <Check size={12} />
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* STEP 2: BRAND LOGO & PLACEMENT */}
-            <div className="studio-config-card">
-              <div className="card-heading">
-                <span className="step-tag technical-text">STEP 02 // LOGO &amp; BRANDING</span>
-                <h3 className="step-title">Apply Your Brand Identity</h3>
-                <p className="step-desc">
-                  Upload your vector logo file (PNG/SVG/AI) or enter your brand name to preview on the bag.
-                </p>
-              </div>
-
-              {/* Logo Upload or Name */}
-              <div className="brand-inputs-deck">
-                <div className="brand-input-group">
-                  <label className="input-label technical-text">OPTION A: TYPE BRAND NAME</label>
-                  <input 
-                    type="text" 
-                    className="brand-text-field"
-                    value={logoText}
-                    onChange={(e) => {
-                      setLogoText(e.target.value);
-                      if (logoImage) setLogoImage(null);
-                    }}
-                    placeholder="Enter Company or Brand Name"
-                    maxLength={24}
-                  />
+            {/* STEP 1: SILHOUETTES */}
+            {activeStep === 1 && (
+              <div className="studio-step-card animate-fade">
+                <div className="studio-card-head">
+                  <div className="studio-step-tag technical-text">STEP 01 OF 04</div>
+                  <h2 className="studio-card-heading">Choose Your Bag Base Model</h2>
+                  <p className="studio-card-sub">
+                    Select a production-engineered bag silhouette. Each format is manufactured from raw fabric roll to finished carry at our Bhiwandi Mumbai plant.
+                  </p>
                 </div>
 
-                <div className="brand-input-group">
-                  <label className="input-label technical-text">OPTION B: UPLOAD LOGO FILE</label>
-                  <label className="btn-file-upload">
-                    <Upload size={15} />
-                    <span>{logoImage ? 'CHANGE LOGO FILE' : 'UPLOAD LOGO (PNG / JPG / SVG)'}</span>
-                    <input 
-                      type="file" 
-                      accept="image/*" 
-                      onChange={handleFileUpload}
-                      style={{ display: 'none' }}
-                    />
-                  </label>
-                </div>
-              </div>
-
-              {/* Branding Technique Selector */}
-              <div className="config-sub-section">
-                <label className="input-label technical-text">SELECT EMBELLISHMENT TECHNIQUE</label>
-                <div className="techniques-grid">
-                  {BRANDING_METHODS.map((method) => {
-                    const isSelected = brandingMethod === method.name;
-                    return (
-                      <div 
-                        key={method.id}
-                        className={`technique-card ${isSelected ? 'active' : ''}`}
-                        onClick={() => setBrandingMethod(method.name)}
-                      >
-                        <div className="technique-header">
-                          <span className="technique-badge technical-text">{method.badge}</span>
-                          {isSelected && <Check size={14} className="technique-check" />}
-                        </div>
-                        <h4 className="technique-name">{method.name}</h4>
-                        <p className="technique-desc">{method.desc}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Placement Zone Selector */}
-              <div className="config-sub-section">
-                <label className="input-label technical-text">SELECT LOGO PLACEMENT ZONE</label>
-                <div className="positions-grid">
-                  {LOGO_POSITIONS.map((pos) => {
-                    const isSelected = logoPosition.id === pos.id;
-                    return (
-                      <button 
-                        key={pos.id}
-                        type="button"
-                        className={`position-pill ${isSelected ? 'active' : ''}`}
-                        onClick={() => setLogoPosition(pos)}
-                      >
-                        {isSelected && <Check size={12} />}
-                        <span>{pos.label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-            </div>
-
-            {/* STEP 3: MATERIALS & INDUSTRIAL TRIMS */}
-            <div className="studio-config-card">
-              <div className="card-heading">
-                <span className="step-tag technical-text">STEP 03 // MATERIALS &amp; HARDWARE</span>
-                <h3 className="step-title">Specify Fabrics &amp; Components</h3>
-                <p className="step-desc">
-                  Select your outer shell textile and heavy-duty zipper hardware.
-                </p>
-              </div>
-
-              {/* Material Selector */}
-              <div className="config-sub-section">
-                <label className="input-label technical-text">OUTER SHELL FABRIC GRADE</label>
-                <div className="materials-list">
-                  {MATERIAL_OPTIONS.map((mat) => {
-                    const isSelected = selectedMaterial === mat.name;
-                    return (
-                      <div 
-                        key={mat.name}
-                        className={`material-item-row ${isSelected ? 'active' : ''}`}
-                        onClick={() => setSelectedMaterial(mat.name)}
-                      >
-                        <div className="radio-circle">{isSelected && <div className="radio-dot" />}</div>
-                        <div className="material-item-info">
-                          <span className="material-name">{mat.name}</span>
-                          <span className="material-note">{mat.note}</span>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Hardware Selector */}
-              <div className="config-sub-section">
-                <label className="input-label technical-text">ZIPPERS &amp; HARDWARE</label>
-                <div className="hardware-grid">
-                  {HARDWARE_OPTIONS.map((hw) => {
-                    const isSelected = hardware === hw;
-                    return (
-                      <div 
-                        key={hw}
-                        className={`hardware-pill ${isSelected ? 'active' : ''}`}
-                        onClick={() => setHardware(hw)}
-                      >
-                        {isSelected && <Check size={12} />}
-                        <span>{hw}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Optional Custom Trims */}
-              <div className="config-sub-section">
-                <label className="input-label technical-text">OPTIONAL ENGINEERING ADD-ONS</label>
-                <div className="features-checkboxes-grid">
-                  {FEATURE_ADDONS.map((feat) => {
-                    const isChecked = selectedFeatures.includes(feat);
-                    return (
-                      <div 
-                        key={feat}
-                        className={`feature-box ${isChecked ? 'active' : ''}`}
-                        onClick={() => toggleFeature(feat)}
-                      >
-                        <div className={`checkbox-box ${isChecked ? 'checked' : ''}`}>
-                          {isChecked && <Check size={12} />}
-                        </div>
-                        <span className="feature-text">{feat}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-            </div>
-
-            {/* STEP 4: QUANTITY & WHATSAPP RFQ */}
-            <div className="studio-config-card step-submit-card">
-              <div className="card-heading">
-                <span className="step-tag technical-text">STEP 04 // QUANTITY &amp; INQUIRY</span>
-                <h3 className="step-title">Order Sample or Volume Fleet</h3>
-                <p className="step-desc">
-                  Start with a 1-unit physical prototype or submit a bulk volume fleet quotation request.
-                </p>
-              </div>
-
-              {/* Quantity Selector */}
-              <div className="quantity-controls-box">
-                <div className="quick-qty-pills">
-                  {QUICK_QUANTITIES.map((q) => (
+                {/* Category Filter Pills */}
+                <div className="step-cat-pills">
+                  {CUSTOM_CATEGORIES.map(cat => (
                     <button
-                      key={q}
+                      key={cat.id}
                       type="button"
-                      className={`qty-pill ${quantity === q ? 'active' : ''}`}
-                      onClick={() => setQuantity(q)}
+                      className={`cat-tab-btn ${activeCategory === cat.id ? 'active' : ''}`}
+                      onClick={() => setActiveCategory(cat.id)}
                     >
-                      {q === 1 ? '1 Pc Sample' : `${q} Units`}
+                      {cat.name}
                     </button>
                   ))}
                 </div>
 
-                <div className="custom-qty-input-row">
-                  <span className="technical-text">CUSTOM QUANTITY:</span>
-                  <input 
-                    type="number" 
-                    min="1" 
-                    max="50000" 
-                    value={quantity} 
-                    onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                    className="qty-number-input"
-                  />
-                  <span className="qty-unit-label technical-text">
-                    {quantity === 1 ? 'PHYSICAL SAMPLE' : 'UNITS PRODUCTION RUN'}
-                  </span>
+                {/* Models Grid */}
+                <div className="curated-models-grid">
+                  {filteredModels.map((m) => {
+                    const isSelected = selectedModel.id === m.id;
+                    return (
+                      <div 
+                        key={m.id}
+                        className={`model-option-box ${isSelected ? 'active' : ''}`}
+                        onClick={() => handleSelectModel(m)}
+                      >
+                        <div className="model-img-frame">
+                          <img src={m.primaryImg} alt={m.name} loading="lazy" />
+                        </div>
+                        <div className="model-info-frame">
+                          <span className="model-cat-badge technical-text">{m.tag}</span>
+                          <h3 className="model-title">{m.name}</h3>
+                          <p className="model-snippet">{m.desc}</p>
+                          <div className="model-bottom-spec technical-text">
+                            <span>VOL: {m.capacity}</span>
+                            <span>•</span>
+                            <span>{m.dimensions}</span>
+                          </div>
+                        </div>
+                        {isSelected && (
+                          <div className="model-check-mark">
+                            <Check size={14} />
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Step Progression Buttons */}
+                <div className="step-nav-footer">
+                  <div className="step-counter technical-text">STEP 1 / 4</div>
+                  <button 
+                    type="button" 
+                    className="btn-next-step"
+                    onClick={() => setActiveStep(2)}
+                  >
+                    <span>CONTINUE TO BRANDING &amp; LOGO</span>
+                    <ArrowRight size={15} />
+                  </button>
                 </div>
               </div>
+            )}
 
-              {/* Client Notes Field */}
-              <div className="notes-box">
-                <label className="input-label technical-text">SPECIAL REQUIREMENTS / NOTES (OPTIONAL)</label>
-                <textarea 
-                  className="notes-textarea"
-                  rows={3}
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  placeholder="e.g. Need delivery by next month, require specific Pantone 286C dyeing, custom lining pattern..."
-                />
+            {/* STEP 2: BRANDING & LOGO */}
+            {activeStep === 2 && (
+              <div className="studio-step-card animate-fade">
+                <div className="studio-card-head">
+                  <div className="studio-step-tag technical-text">STEP 02 OF 04</div>
+                  <h2 className="studio-card-heading">Apply Your Brand Identity</h2>
+                  <p className="studio-card-sub">
+                    Type your company name or upload your vector logo file to preview placement and choose high-end factory embellishment techniques.
+                  </p>
+                </div>
+
+                {/* Brand Name Input & File Upload */}
+                <div className="brand-inputs-dual-grid">
+                  <div className="brand-input-block">
+                    <label className="input-title technical-text">OPTION A: TYPE BRAND NAME</label>
+                    <input 
+                      type="text" 
+                      className="brand-text-input"
+                      value={logoText}
+                      onChange={(e) => {
+                        setLogoText(e.target.value);
+                        if (logoImage) setLogoImage(null);
+                      }}
+                      placeholder="e.g. ASKMEBAG, TECHFLEET"
+                      maxLength={24}
+                    />
+                    <span className="input-hint">Renders live wordmark on the visual stage.</span>
+                  </div>
+
+                  <div className="brand-input-block">
+                    <label className="input-title technical-text">OPTION B: UPLOAD LOGO FILE</label>
+                    <label className="btn-upload-file-box">
+                      <Upload size={16} />
+                      <span>{logoImage ? 'CHANGE LOGO FILE' : 'UPLOAD VECTOR / PNG LOGO'}</span>
+                      <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={handleFileUpload}
+                        style={{ display: 'none' }}
+                      />
+                    </label>
+                    <span className="input-hint">PNG, JPG, or SVG with transparent background recommended.</span>
+                  </div>
+                </div>
+
+                {/* Embellishment Technique Selection */}
+                <div className="config-section-group">
+                  <label className="input-title technical-text">CHOOSE FACTORY EMBELLISHMENT TECHNIQUE</label>
+                  <div className="techniques-options-grid">
+                    {BRANDING_METHODS.map((method) => {
+                      const isSelected = brandingMethod === method.name;
+                      return (
+                        <div 
+                          key={method.id}
+                          className={`technique-selector-card ${isSelected ? 'active' : ''}`}
+                          onClick={() => setBrandingMethod(method.name)}
+                        >
+                          <div className="technique-badge-row">
+                            <span className="tech-badge technical-text">{method.badge}</span>
+                            {isSelected && <Check size={14} className="tech-check-icon" />}
+                          </div>
+                          <h4 className="tech-name">{method.name}</h4>
+                          <p className="tech-desc">{method.desc}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Logo Placement Zone */}
+                <div className="config-section-group">
+                  <label className="input-title technical-text">SELECT LOGO PLACEMENT POSITION</label>
+                  <div className="position-preset-pills">
+                    {LOGO_POSITIONS.map((pos) => {
+                      const isSelected = logoPosition.id === pos.id;
+                      return (
+                        <button 
+                          key={pos.id}
+                          type="button"
+                          className={`pos-pill ${isSelected ? 'active' : ''}`}
+                          onClick={() => setLogoPosition(pos)}
+                        >
+                          {isSelected && <Check size={12} />}
+                          <span>{pos.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Step Progression Buttons */}
+                <div className="step-nav-footer">
+                  <button 
+                    type="button" 
+                    className="btn-prev-step"
+                    onClick={() => setActiveStep(1)}
+                  >
+                    <ArrowLeft size={15} />
+                    <span>BACK TO SILHOUETTES</span>
+                  </button>
+                  <button 
+                    type="button" 
+                    className="btn-next-step"
+                    onClick={() => setActiveStep(3)}
+                  >
+                    <span>CONTINUE TO MATERIALS &amp; TRIMS</span>
+                    <ArrowRight size={15} />
+                  </button>
+                </div>
               </div>
+            )}
 
-              {/* Action Buttons */}
-              <div className="submit-actions-deck">
-                <button 
-                  type="button" 
-                  className="btn-whatsapp-submit"
-                  onClick={handleSendWhatsAppOrder}
-                >
-                  <MessageCircle size={18} />
-                  <span>START ORDER ON WHATSAPP ({quantity} {quantity === 1 ? 'SAMPLE' : 'UNITS'})</span>
-                  <ArrowRight size={16} />
-                </button>
+            {/* STEP 3: MATERIALS & HARDWARE */}
+            {activeStep === 3 && (
+              <div className="studio-step-card animate-fade">
+                <div className="studio-card-head">
+                  <div className="studio-step-tag technical-text">STEP 03 OF 04</div>
+                  <h2 className="studio-card-heading">Specify Materials &amp; Hardware</h2>
+                  <p className="studio-card-sub">
+                    Engineered from commercial-grade textiles and heavy-duty SBS/YKK fasteners for maximum abrasion and load resilience.
+                  </p>
+                </div>
 
-                <button 
-                  type="button" 
-                  className="btn-copy-spec"
-                  onClick={handleCopySpec}
-                >
-                  {copied ? <Check size={16} className="text-emerald" /> : <Copy size={16} />}
-                  <span>{copied ? 'SPECIFICATION COPIED!' : 'COPY SPECIFICATION'}</span>
-                </button>
+                {/* Outer Shell Textile */}
+                <div className="config-section-group">
+                  <label className="input-title technical-text">OUTER SHELL FABRIC GRADE</label>
+                  <div className="materials-options-stack">
+                    {MATERIAL_OPTIONS.map((mat) => {
+                      const isSelected = selectedMaterial === mat.name;
+                      return (
+                        <div 
+                          key={mat.name}
+                          className={`material-option-card ${isSelected ? 'active' : ''}`}
+                          onClick={() => setSelectedMaterial(mat.name)}
+                        >
+                          <div className="custom-radio-circle">
+                            {isSelected && <div className="radio-inner-dot" />}
+                          </div>
+                          <div className="material-card-content">
+                            <span className="mat-title">{mat.name}</span>
+                            <span className="mat-desc">{mat.note}</span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Hardware & Zippers */}
+                <div className="config-section-group">
+                  <label className="input-title technical-text">INDUSTRIAL FASTENERS &amp; ZIPPERS</label>
+                  <div className="hardware-options-stack">
+                    {HARDWARE_OPTIONS.map((hw) => {
+                      const isSelected = hardware === hw;
+                      return (
+                        <div 
+                          key={hw}
+                          className={`hw-option-btn ${isSelected ? 'active' : ''}`}
+                          onClick={() => setHardware(hw)}
+                        >
+                          {isSelected && <Check size={13} />}
+                          <span>{hw}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Add-on Engineering Features */}
+                <div className="config-section-group">
+                  <label className="input-title technical-text">OPTIONAL ENGINEERING ADD-ONS</label>
+                  <div className="features-checkbox-grid">
+                    {FEATURE_ADDONS.map((feat) => {
+                      const isChecked = selectedFeatures.includes(feat);
+                      return (
+                        <div 
+                          key={feat}
+                          className={`feature-toggle-box ${isChecked ? 'active' : ''}`}
+                          onClick={() => toggleFeature(feat)}
+                        >
+                          <div className={`checkbox-indicator ${isChecked ? 'checked' : ''}`}>
+                            {isChecked && <Check size={11} />}
+                          </div>
+                          <span className="feature-label-text">{feat}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Step Progression Buttons */}
+                <div className="step-nav-footer">
+                  <button 
+                    type="button" 
+                    className="btn-prev-step"
+                    onClick={() => setActiveStep(2)}
+                  >
+                    <ArrowLeft size={15} />
+                    <span>BACK TO BRANDING</span>
+                  </button>
+                  <button 
+                    type="button" 
+                    className="btn-next-step"
+                    onClick={() => setActiveStep(4)}
+                  >
+                    <span>CONTINUE TO VOLUME &amp; RFQ</span>
+                    <ArrowRight size={15} />
+                  </button>
+                </div>
               </div>
+            )}
 
-            </div>
+            {/* STEP 4: VOLUME & WHATSAPP RFQ */}
+            {activeStep === 4 && (
+              <div className="studio-step-card animate-fade">
+                <div className="studio-card-head">
+                  <div className="studio-step-tag technical-text">STEP 04 OF 04</div>
+                  <h2 className="studio-card-heading">Order Volume &amp; WhatsApp RFQ</h2>
+                  <p className="studio-card-sub">
+                    Our direct manufacturing minimum is 50 units (MOQ: 50 PCS). Volume discounts apply at 100, 250, and 500+ units.
+                  </p>
+                </div>
+
+                {/* Quantity Controls */}
+                <div className="quantity-select-panel">
+                  <label className="input-title technical-text">SELECT REQUIRED PRODUCTION RUN (MOQ: 50 PCS)</label>
+                  <div className="quick-qty-grid">
+                    {QUICK_QUANTITIES.map((q) => (
+                      <button
+                        key={q}
+                        type="button"
+                        className={`qty-preset-btn ${quantity === q ? 'active' : ''}`}
+                        onClick={() => setQuantity(q)}
+                      >
+                        <strong>{q}</strong>
+                        <span>UNITS</span>
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="custom-qty-box">
+                    <span className="custom-qty-label technical-text">CUSTOM QUANTITY:</span>
+                    <input 
+                      type="number" 
+                      min="50" 
+                      max="100000" 
+                      value={quantity} 
+                      onChange={(e) => setQuantity(Math.max(50, parseInt(e.target.value) || 50))}
+                      className="custom-qty-input"
+                    />
+                    <span className="custom-qty-moq technical-text">
+                      {quantity >= 250 ? 'TIER III ENTERPRISE FLEET' : quantity >= 100 ? 'TIER II VOLUME DISCOUNT' : 'TIER I BASE MOQ (50 PCS)'}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Special Requirements Textarea */}
+                <div className="config-section-group">
+                  <label className="input-title technical-text">SPECIAL PRODUCTION NOTES / TARGET TIMELINE</label>
+                  <textarea 
+                    className="production-notes-textarea"
+                    rows={3}
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    placeholder="e.g. Need delivery by 25th of next month, specific Pantone code for lining, corporate conference event in Mumbai..."
+                  />
+                </div>
+
+                {/* Company Credential & Trust Box */}
+                <div className="company-cred-box">
+                  <div className="cred-item">
+                    <Building2 size={15} />
+                    <div>
+                      <span className="cred-k technical-text">TRADE NAME</span>
+                      <strong className="cred-v">{COMPANY_CONFIG.tradeName}</strong>
+                    </div>
+                  </div>
+                  <div className="cred-item">
+                    <ShieldCheck size={15} className="text-emerald" />
+                    <div>
+                      <span className="cred-k technical-text">GST NUMBER</span>
+                      <strong className="cred-v">{COMPANY_CONFIG.gstNo}</strong>
+                    </div>
+                  </div>
+                  <div className="cred-item">
+                    <MapPin size={15} />
+                    <div>
+                      <span className="cred-k technical-text">FACTORY ADDRESS</span>
+                      <span className="cred-v-small">{COMPANY_CONFIG.address}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Primary WhatsApp Order Taking Action */}
+                <div className="step-submit-action-deck">
+                  <button 
+                    type="button" 
+                    className="btn-main-whatsapp-order"
+                    onClick={handleSendWhatsAppOrder}
+                  >
+                    <MessageCircle size={20} />
+                    <div>
+                      <span className="btn-main-title">SEND CUSTOM SPECIFICATION VIA WHATSAPP</span>
+                      <span className="btn-main-sub technical-text">DIRECT TO {COMPANY_CONFIG.whatsappDisplay} // {quantity} UNITS</span>
+                    </div>
+                    <ArrowRight size={18} />
+                  </button>
+
+                  <div className="secondary-action-row">
+                    <button 
+                      type="button" 
+                      className="btn-copy-specification technical-text"
+                      onClick={handleCopySpec}
+                    >
+                      {copied ? <Check size={14} className="text-emerald" /> : <Copy size={14} />}
+                      <span>{copied ? 'SPECIFICATION COPIED!' : 'COPY SPECIFICATION'}</span>
+                    </button>
+                    <button 
+                      type="button" 
+                      className="btn-step-back-text technical-text"
+                      onClick={() => setActiveStep(3)}
+                    >
+                      <ArrowLeft size={13} /> BACK TO STEP 03
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            )}
 
           </div>
 
         </div>
+
       </div>
 
     </div>

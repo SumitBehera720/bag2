@@ -33,11 +33,9 @@ const LOGO_POSITIONS = [
 ];
 
 const QUANTITY_TIERS = [
-  { qty: 1, label: '1 Unit (Sample)', badge: 'Prototype Tier' },
-  { qty: 10, label: '10 Units', badge: 'Pilot Batch' },
-  { qty: 50, label: '50 Units', badge: 'Small Fleet' },
-  { qty: 100, label: '100 Units', badge: 'Popular Fleet' },
-  { qty: 250, label: '250 Units', badge: 'Volume Discount' },
+  { qty: 50, label: '50 Units (MOQ)', badge: 'Tier I: 15% Vol' },
+  { qty: 100, label: '100 Units', badge: 'Tier II: 25% Vol' },
+  { qty: 250, label: '250 Units', badge: 'Tier III: Enterprise' },
   { qty: 500, label: '500+ Units', badge: 'Direct Factory' }
 ];
 
@@ -142,7 +140,7 @@ const ProductCustomizerModal = ({ product, isOpen, onClose }) => {
       `• *Fabric:* ${selectedMaterial}`,
       `• *Hardware:* ${hardware}`,
       `Ready to initiate sample prototyping with ASKMEBAG:`,
-      `https://wa.me/919890060000?text=${encodeURIComponent(formatCustomSpecText())}`
+      buildWhatsAppUrl(formatCustomSpecText())
     ].join('\n');
 
     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`, '_blank', 'noopener,noreferrer');
@@ -451,31 +449,31 @@ const ProductCustomizerModal = ({ product, isOpen, onClose }) => {
 
               {/* Exact Quantity Stepper */}
               <div className="custom-qty-stepper-wrap">
-                <span className="control-label technical-text">CUSTOM QUANTITY (ORDER 1 OR ANY FLEET SIZE):</span>
+                <span className="control-label technical-text">CUSTOM QUANTITY (MINIMUM ORDER 50 UNITS):</span>
                 <div className="modal-qty-stepper">
                   <button 
                     type="button" 
                     className="modal-step-btn"
-                    onClick={() => setQuantity(prev => Math.max(1, (parseInt(prev, 10) || 1) - 1))}
+                    onClick={() => setQuantity(prev => Math.max(50, (parseInt(prev, 10) || 50) - 1))}
                     aria-label="Decrease quantity"
                   >-</button>
                   <input 
                     type="number" 
-                    min="1"
+                    min="50"
                     value={quantity}
                     onChange={(e) => {
                       const val = parseInt(e.target.value, 10);
-                      setQuantity(isNaN(val) || val < 1 ? 1 : val);
+                      setQuantity(isNaN(val) || val < 50 ? 50 : val);
                     }}
                     className="modal-qty-input"
                   />
                   <button 
                     type="button" 
                     className="modal-step-btn"
-                    onClick={() => setQuantity(prev => (parseInt(prev, 10) || 1) + 1)}
+                    onClick={() => setQuantity(prev => (parseInt(prev, 10) || 50) + 1)}
                     aria-label="Increase quantity"
                   >+</button>
-                  <span className="modal-qty-hint technical-text">NO MOQ • 1 PC PROTOTYPE OR 10,000+ UNITS</span>
+                  <span className="modal-qty-hint technical-text">MINIMUM ORDER: 50 UNITS (MOQ)</span>
                 </div>
               </div>
 

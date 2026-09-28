@@ -140,8 +140,8 @@ const About = () => {
               </div>
               <div className="proof-divider"></div>
               <div className="proof-stat">
-                <span className="stat-number">NO MOQ</span>
-                <span className="stat-desc">Order From 1 Unit</span>
+                <span className="stat-number">50 UNITS</span>
+                <span className="stat-desc">Minimum Order (MOQ)</span>
               </div>
             </div>
           </FadeIn>

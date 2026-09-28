@@ -171,7 +171,7 @@ const PortfolioSection = () => {
           </div>
           <div className="proof-point">
             <span className="proof-bullet">•</span>
-            <span>Zero MOQ Physical Sampling Available (5–7 Days)</span>
+            <span>Pre-Production Physical Sampling Included (MOQ: 50 Units)</span>
           </div>
           <div className="proof-point">
             <span className="proof-bullet">•</span>

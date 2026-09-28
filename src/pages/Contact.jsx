@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MessageCircle, ArrowUpRight, MapPin, Mail, Phone, Clock } from 'lucide-react';
+import { MessageCircle, ArrowUpRight, MapPin, Mail, Phone, Clock, ShieldCheck, Building2 } from 'lucide-react';
 import { COMPANY_CONFIG, buildWhatsAppUrl } from '../config';
 import FadeIn from '../components/FadeIn';
 import './ContactPage.css';
@@ -21,8 +21,28 @@ const Contact = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleSendWhatsAppInquiry = (e) => {
+  const handleSendWhatsAppInquiry = async (e) => {
     e.preventDefault();
+
+    // 1. Save to Database using the new API
+    try {
+      await fetch('https://darkgoldenrod-mink-800117.hostingersite.com/api/inquiries', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: companyName || 'Website Visitor',
+          email: 'not-provided@example.com', // Ask user for email if needed, or use default
+          subject: inquiryType,
+          message: `Estimated Quantity: ${estimatedQuantity}\n\nNote: ${note}`
+        })
+      });
+    } catch (err) {
+      console.error("Failed to save inquiry to database", err);
+    }
+
+    // 2. Continue to WhatsApp as before
     const message = [
       `*ASKMEBAG WEBSITE INQUIRY*`,
       `━━━━━━━━━━━━━━━━━━━━━━`,
@@ -145,22 +165,31 @@ const Contact = () => {
               <div className="contact-blocks">
                 
                 <div className="contact-block">
-                  <h3 className="technical-text contact-label"><Phone size={13} /> WHATSAPP &amp; PHONE</h3>
-                  <a href={buildWhatsAppUrl("Hello ASKMEBAG")} className="contact-value-link" target="_blank" rel="noreferrer">
-                    {COMPANY_CONFIG.whatsappDisplay}
-                  </a>
+                  <h3 className="technical-text contact-label"><Building2 size={13} /> TRADE NAME &amp; GSTIN</h3>
+                  <p className="contact-value" style={{ fontWeight: 700, margin: '0 0 4px 0' }}>{COMPANY_CONFIG.tradeName}</p>
+                  <p className="contact-value" style={{ fontSize: '0.82rem', color: '#1A9E48', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <ShieldCheck size={14} /> GST: {COMPANY_CONFIG.gstNo} (Verified)
+                  </p>
                 </div>
 
                 <div className="contact-block">
-                  <h3 className="technical-text contact-label"><Mail size={13} /> DIRECT EMAIL</h3>
+                  <h3 className="technical-text contact-label"><Phone size={13} /> WHATSAPP DIRECT ORDER TAKING</h3>
+                  <a href={buildWhatsAppUrl("Hello ASKMEBAG, I would like to place an order / request a quote.")} className="contact-value-link" target="_blank" rel="noreferrer">
+                    {COMPANY_CONFIG.whatsappDisplay}
+                  </a>
+                  <p className="contact-value" style={{ fontSize: '0.75rem', opacity: 0.7, margin: '2px 0 0' }}>Instant digital mockup &amp; volume quotation</p>
+                </div>
+
+                <div className="contact-block">
+                  <h3 className="technical-text contact-label"><Mail size={13} /> OFFICIAL EMAIL</h3>
                   <a href={`mailto:${COMPANY_CONFIG.email}`} className="contact-value-link">
                     {COMPANY_CONFIG.email}
                   </a>
                 </div>
 
                 <div className="contact-block">
-                  <h3 className="technical-text contact-label"><MapPin size={13} /> PRODUCTION &amp; HUB</h3>
-                  <p className="contact-value">Pune &amp; Mumbai Industrial Corridor, Maharashtra, India</p>
+                  <h3 className="technical-text contact-label"><MapPin size={13} /> MANUFACTURER &amp; FACTORY ADDRESS</h3>
+                  <p className="contact-value" style={{ lineHeight: 1.45 }}>{COMPANY_CONFIG.address}</p>
                 </div>
 
                 <div className="contact-block">

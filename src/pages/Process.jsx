@@ -128,8 +128,8 @@ const Process = () => {
               <span className="proof-label technical-text">PHYSICAL SAMPLE TURNAROUND</span>
             </div>
             <div className="proof-item">
-              <span className="proof-stat">NO MOQ</span>
-              <span className="proof-label technical-text">FROM 1 UNIT TO 10,000+ UNITS</span>
+              <span className="proof-stat">50 UNITS</span>
+              <span className="proof-label technical-text">MINIMUM ORDER VOLUME (MOQ)</span>
             </div>
             <div className="proof-item">
               <span className="proof-stat">±0.5 MM</span>

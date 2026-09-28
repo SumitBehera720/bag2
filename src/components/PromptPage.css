@@ -1,0 +1,217 @@
+/* ==========================================================================
+   PROMPT ARCHIVE PAGE STYLES
+   ========================================================================== */
+
+.prompt-page-wrap {
+  min-height: 100vh;
+  background-color: #f4f0e8;
+  color: #1b1b19;
+  padding: calc(var(--header-height, 72px) + 2rem) 0 6rem;
+}
+
+/* Nav Bar */
+.prompt-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #1b1b19;
+  text-decoration: none;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(217, 211, 200, 0.8);
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+
+.back-link:hover {
+  background: #1b1b19;
+  color: #ffffff;
+}
+
+.prompt-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 6px 14px;
+  background: rgba(163, 93, 51, 0.12);
+  border: 1px solid rgba(163, 93, 51, 0.3);
+  border-radius: 999px;
+  color: #a35d33;
+}
+
+/* Header */
+.prompt-header {
+  margin-bottom: 3rem;
+}
+
+.prompt-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #a35d33;
+  margin-bottom: 0.5rem;
+}
+
+.prompt-title {
+  font-family: var(--font-heading, 'Poppins', sans-serif);
+  font-size: clamp(2.2rem, 4vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #1a1a19;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem 0;
+}
+
+.prompt-lead {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #55504a;
+  max-width: 780px;
+  margin: 0;
+}
+
+/* Metadata Cards Grid */
+.prompt-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.meta-card {
+  background: #ffffff;
+  border: 1px solid rgba(217, 211, 200, 0.7);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.meta-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(217, 211, 200, 0.5);
+  color: #a35d33;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.meta-icon {
+  color: #a35d33;
+}
+
+.meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 0.85rem;
+}
+
+.meta-row:last-child {
+  margin-bottom: 0;
+}
+
+.meta-k {
+  font-size: 0.68rem;
+  color: #8c867e;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.meta-v {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1b1b19;
+  font-family: var(--font-mono, monospace);
+}
+
+/* Prompt Box Section */
+.prompt-box-section {
+  background: #181816;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+.prompt-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.75rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.prompt-box-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #d9d3c8;
+  letter-spacing: 0.08em;
+}
+
+.copy-prompt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 8px 16px;
+  background: #a35d33;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  font-family: var(--font-main, 'Poppins', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-prompt-btn:hover {
+  background: #b56a3c;
+  transform: translateY(-1px);
+}
+
+.copy-prompt-btn.is-copied {
+  background: #22c55e;
+}
+
+.prompt-code-block {
+  padding: 2rem 2.25rem;
+  margin: 0;
+  overflow-x: auto;
+  font-family: var(--font-mono, 'JetBrains Mono', Consolas, monospace);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: #dcd8cf;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .prompt-meta-grid {
+    grid-template-columns: 1fr;
+  }
+}
