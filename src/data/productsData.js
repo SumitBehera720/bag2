@@ -49,7 +49,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/1.png",
     "defaultImage": "/products/cutout/1.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -112,7 +112,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/2.png",
     "defaultImage": "/products/cutout/2.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Upper Panel",
     "isCustomizable": true,
     "materials": [
@@ -179,7 +179,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/4.png",
     "defaultImage": "/products/cutout/3.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Pocket",
     "isCustomizable": true,
     "materials": [
@@ -240,7 +240,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/1.png",
     "defaultImage": "/products/styled/3.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -301,7 +301,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/5.png",
     "defaultImage": "/products/styled/4.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -354,7 +354,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/6.png",
     "defaultImage": "/products/cutout/6.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -406,7 +406,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/9.png",
     "defaultImage": "/products/cutout/9.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -469,7 +469,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/10.png",
     "defaultImage": "/products/styled/8.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Lower Corner",
     "isCustomizable": true,
     "materials": [
@@ -522,7 +522,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/10.png",
     "defaultImage": "/products/cutout/10.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -571,7 +571,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/5.png",
     "defaultImage": "/products/cutout/5.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -622,7 +622,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/13.png",
     "defaultImage": "/products/cutout/14.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -674,7 +674,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/15.png",
     "defaultImage": "/products/cutout/15.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Lower",
     "isCustomizable": true,
     "materials": [
@@ -726,7 +726,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/16.png",
     "defaultImage": "/products/cutout/16.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -774,7 +774,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/18.png",
     "defaultImage": "/products/cutout/18.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Upper Center",
     "isCustomizable": true,
     "materials": [
@@ -821,7 +821,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/19.png",
     "defaultImage": "/products/cutout/19.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Center Body",
     "isCustomizable": true,
     "materials": [
@@ -868,7 +868,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/20.png",
     "defaultImage": "/products/cutout/20.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -919,7 +919,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/19.png",
     "defaultImage": "/products/styled/21.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -970,7 +970,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/18.png",
     "defaultImage": "/products/styled/18.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Lower Center",
     "isCustomizable": true,
     "materials": [
@@ -1017,7 +1017,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/21.png",
     "defaultImage": "/products/cutout/21.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -1066,7 +1066,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/22.png",
     "defaultImage": "/products/cutout/22.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Upper Panel",
     "isCustomizable": true,
     "materials": [
@@ -1118,7 +1118,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/24.png",
     "defaultImage": "/products/cutout/24.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -1169,7 +1169,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/26.png",
     "defaultImage": "/products/cutout/25.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Lower Center",
     "isCustomizable": true,
     "materials": [
@@ -1221,7 +1221,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/27.png",
     "defaultImage": "/products/cutout/27.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Upper Center",
     "isCustomizable": true,
     "materials": [
@@ -1268,7 +1268,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/28.png",
     "defaultImage": "/products/cutout/28.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -1315,7 +1315,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/30.png",
     "defaultImage": "/products/cutout/30.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -1366,7 +1366,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/31.png",
     "defaultImage": "/products/cutout/31.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Side Panel / Front Center",
     "isCustomizable": true,
     "materials": [
@@ -1418,7 +1418,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/32.png",
     "defaultImage": "/products/cutout/32.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Face",
     "isCustomizable": true,
     "materials": [
@@ -1465,7 +1465,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/34.png",
     "defaultImage": "/products/cutout/34.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -1516,7 +1516,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/35.png",
     "defaultImage": "/products/styled/34.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Panel",
     "isCustomizable": true,
     "materials": [
@@ -1563,7 +1563,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/36.png",
     "defaultImage": "/products/cutout/36.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -1614,7 +1614,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/37.png",
     "defaultImage": "/products/cutout/38.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Pocket",
     "isCustomizable": true,
     "materials": [
@@ -1662,7 +1662,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/40.png",
     "defaultImage": "/products/cutout/40.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -1714,7 +1714,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/41.png",
     "defaultImage": "/products/cutout/41.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -1765,7 +1765,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/42.png",
     "defaultImage": "/products/cutout/42.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -1813,7 +1813,7 @@ export const PRODUCTS = [
     "styledImage": "/products/cutout/43.png",
     "defaultImage": "/products/cutout/43.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Side Panel",
     "isCustomizable": true,
     "materials": [
@@ -1864,7 +1864,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/44.png",
     "defaultImage": "/products/cutout/44.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -1915,7 +1915,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/45.png",
     "defaultImage": "/products/cutout/45.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Center",
     "isCustomizable": true,
     "materials": [
@@ -1967,7 +1967,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/46.png",
     "defaultImage": "/products/cutout/46.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Front Upper Panel",
     "isCustomizable": true,
     "materials": [
@@ -2016,7 +2016,7 @@ export const PRODUCTS = [
     "styledImage": "/products/styled/47.png",
     "defaultImage": "/products/styled/47.png",
     "minOrder": 50,
-    "leadTime": "2-3 Weeks",
+    "leadTime": "7-10 Days",
     "logoPosition": "Lower Center",
     "isCustomizable": true,
     "materials": [

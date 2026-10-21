@@ -74,20 +74,76 @@ const CHAPTERS = [
   }
 ];
 
-const HeroExperience = () => {
+const HeroExperience = ({ sectionData }) => {
   const trackRef = useRef(null);
   const viewportRef = useRef(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [videoDuration, setVideoDuration] = useState(10);
   const [currentVideoTime, setCurrentVideoTime] = useState(0);
   const [activeChapterIndex, setActiveChapterIndex] = useState(0);
+  const [chapters, setChapters] = useState(CHAPTERS);
   const { scrollTo, lenis } = useSmoothScroll();
+
+  // If sectionData is passed directly, use its chapters
+  useEffect(() => {
+    if (sectionData?.content?.chapters && Array.isArray(sectionData.content.chapters) && sectionData.content.chapters.length === 5) {
+      const merged = sectionData.content.chapters.map((ch, i) => ({
+        ...CHAPTERS[i],
+        phase: ch.phase || CHAPTERS[i].phase,
+        headline: ch.headline || CHAPTERS[i].headline,
+        title: ch.title || CHAPTERS[i].title,
+        description: ch.description || CHAPTERS[i].description,
+        badge: ch.badge || CHAPTERS[i].badge,
+      }));
+      setChapters(merged);
+    }
+  }, [sectionData]);
+
+  // Fetch chapters from CMS API fallback — use index.php URL
+  useEffect(() => {
+    if (sectionData?.content?.chapters) return;
+    fetch('https://askmebag.com/api/index.php/public/sections?page=homepage')
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (!data) return;
+        const hero = data.find(s => s.section_key === 'hero');
+        if (hero && hero.content && Array.isArray(hero.content.chapters) && hero.content.chapters.length === 5) {
+          const merged = hero.content.chapters.map((ch, i) => ({
+            ...CHAPTERS[i],
+            phase: ch.phase || CHAPTERS[i].phase,
+            headline: ch.headline || CHAPTERS[i].headline,
+            title: ch.title || CHAPTERS[i].title,
+            description: ch.description || CHAPTERS[i].description,
+            badge: ch.badge || CHAPTERS[i].badge,
+          }));
+          setChapters(merged);
+        }
+      })
+      .catch(() => {});
+  }, [sectionData]);
+
+  // Responsive video selection: mobile.mp4 (portrait/mobile) vs desktop.mp4
+  const [videoSrc, setVideoSrc] = useState(
+    typeof window !== 'undefined' && window.innerWidth <= 768 ? '/media/mobile.mp4' : '/media/desktop.mp4'
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth <= 768;
+      const targetSrc = isMobile ? '/media/mobile.mp4' : '/media/desktop.mp4';
+      setVideoSrc(prev => prev !== targetSrc ? targetSrc : prev);
+    };
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Pin the hero viewport during scroll and scrub smoothly through chapters
   useEffect(() => {
     const track = trackRef.current;
     const viewport = viewportRef.current;
     if (!track || !viewport) return;
+
+    const isTouch = window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 768;
 
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
@@ -96,8 +152,9 @@ const HeroExperience = () => {
         end: 'bottom bottom',
         pin: viewport,
         pinSpacing: true,
-        anticipatePin: 1,
-        scrub: 0.6, // Silky smooth interpolation
+        anticipatePin: isTouch ? 0 : 1, // On mobile, anticipatePin can cause jerky layout jumps
+        fastScrollEnd: true,
+        scrub: isTouch ? 0.3 : 0.6, // Tighter scrub on mobile touch for responsive feel without dragging lag
         onUpdate: (self) => {
           const p = self.progress;
           setScrollProgress(p);
@@ -119,7 +176,7 @@ const HeroExperience = () => {
     return () => ctx.revert();
   }, []);
 
-  const activeChapter = CHAPTERS[activeChapterIndex] || CHAPTERS[0];
+  const activeChapter = chapters[activeChapterIndex] || chapters[0];
 
   // Jump smoothly to a specific chapter
   const handleJumpToChapter = (index) => {
@@ -149,9 +206,10 @@ const HeroExperience = () => {
     const currentScroll = window.scrollY || document.documentElement.scrollTop;
     if (currentScroll > 60 || autoPlayFiredRef.current) return;
 
-    // Check reduced motion
+    // Check reduced motion or mobile touch (auto-scrolling on touch devices fights native gesture velocity)
+    const isTouch = window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 768;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
+    if (isTouch || prefersReducedMotion) return;
 
     const killAutoPlay = () => {
       if (tweenRef.current) {
@@ -217,7 +275,8 @@ const HeroExperience = () => {
         
         {/* Native HTML5 Scrubbed Video Background */}
         <ScrollVideo
-          src="/media/desktop.mp4"
+          src={videoSrc}
+          poster={typeof window !== 'undefined' && window.innerWidth <= 768 ? '/media/hero_mobile.jpg' : '/media/hero_desktop.jpg'}
           scrollProgress={scrollProgress}
           onDurationChange={setVideoDuration}
           onTimeUpdate={setCurrentVideoTime}

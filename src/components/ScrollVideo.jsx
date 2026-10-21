@@ -6,8 +6,11 @@ import './ScrollVideo.css';
  * Smooth, frame-rate independent playhead scrubbing with exponential damping
  * and hardware decoder protection.
  */
-export const DAMPING_FACTOR = 0.12;
-export const SEEK_EPSILON = 0.015;
+// Adaptive thresholds: Desktop vs Mobile GPU/hardware decoders
+const IS_TOUCH = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+export const DAMPING_FACTOR = IS_TOUCH ? 0.25 : 0.14;
+export const SEEK_EPSILON = IS_TOUCH ? 0.04 : 0.015;
+const MIN_SEEK_INTERVAL = IS_TOUCH ? 45 : 16; // Throttle seeks on mobile GPUs to avoid decoder freezing
 
 const ScrollVideo = ({
   src = '/media/desktop.mp4',
@@ -66,7 +69,7 @@ const ScrollVideo = ({
     }
   }, [onTimeUpdate]);
 
-  // Smooth RAF scrub loop
+  // Smooth RAF scrub loop with mobile hardware decoder protection
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -85,13 +88,16 @@ const ScrollVideo = ({
 
       const now = performance.now();
 
-      // Decoder timeout unlock: if seeking was stuck for >80ms, unblock
-      if (isSeekingRef.current && (now - lastSeekStampRef.current > 80)) {
+      // Mobile decoder protection: if seeking was stuck for >60ms, release lock
+      if (isSeekingRef.current && (now - lastSeekStampRef.current > 60)) {
         isSeekingRef.current = false;
       }
 
-      // Check if we need to update video.currentTime
-      if (!isSeekingRef.current && Math.abs(video.currentTime - playheadRef.current) > SEEK_EPSILON) {
+      // Check if we need to update video.currentTime with throttling
+      const timeDiff = Math.abs(video.currentTime - playheadRef.current);
+      const timeSinceLastSeek = now - lastSeekStampRef.current;
+
+      if (!isSeekingRef.current && timeDiff > SEEK_EPSILON && timeSinceLastSeek >= MIN_SEEK_INTERVAL) {
         isSeekingRef.current = true;
         lastSeekStampRef.current = now;
 
@@ -123,13 +129,12 @@ const ScrollVideo = ({
     };
   }, [onTimeUpdate]);
 
-  // Subtle desktop mouse parallax
+  // Subtle desktop mouse parallax (disabled on mobile)
   useEffect(() => {
-    if (!enableParallax) return;
+    if (!enableParallax || IS_TOUCH) return;
 
-    const isTouch = window.matchMedia('(pointer: coarse)').matches;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (isTouch || prefersReducedMotion) return;
+    if (prefersReducedMotion) return;
 
     const handleMouseMove = (e) => {
       const { innerWidth, innerHeight } = window;

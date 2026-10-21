@@ -36,7 +36,12 @@ const customizationCards = [
   }
 ];
 
-const CustomizationSection = () => {
+const CustomizationSection = ({ sectionData }) => {
+  const subtitle = sectionData?.subtitle || '02 // BESPOKE OEM & ODM PRODUCTION';
+  const rawTitle = sectionData?.title || 'NOT JUST A BAG.\nYOUR BAG.';
+  const titleParts = rawTitle.includes('\n') ? rawTitle.split('\n') : (rawTitle.includes('. ') ? rawTitle.split('. ') : [rawTitle]);
+  const description = sectionData?.description || "We don't sell generic off-the-shelf blanks. Every bag is engineered structurally from scratch around your specific organization, branding, and daily utility requirements.";
+
   return (
     <section className="editorial-customization" id="custom">
       <div className="editorial-container">
@@ -44,17 +49,20 @@ const CustomizationSection = () => {
         {/* Section Header */}
         <div className="custom-section-header">
           <div className="custom-eyebrow technical-text">
-            <span>02 // BESPOKE OEM &amp; ODM PRODUCTION</span>
+            <span>{subtitle}</span>
             <span className="custom-moq-pill">
               <CheckCircle2 size={12} /> MINIMUM ORDER 50 UNITS (MOQ)
             </span>
           </div>
           <h2 className="customization-title">
-            NOT JUST A BAG.<br/>
-            YOUR BAG.
+            {titleParts.map((part, i) => (
+              <React.Fragment key={i}>
+                {part}{i < titleParts.length - 1 && <br/>}
+              </React.Fragment>
+            ))}
           </h2>
           <p className="customization-desc">
-            We don't sell generic off-the-shelf blanks. Every bag is engineered structurally from scratch around your specific organization, branding, and daily utility requirements.
+            {description}
           </p>
         </div>
 

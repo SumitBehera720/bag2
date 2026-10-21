@@ -3,62 +3,73 @@ import { ArrowUpRight, CheckCircle2, MessageCircle, ShieldCheck, Clock, Layers }
 import { buildWhatsAppUrl, generateBulkQuoteMessage } from '../config';
 import './PortfolioSection.css';
 
-const projects = [
-  {
-    id: '01',
-    fleetTag: 'FLEET 01 // TACTICAL DAYPACK',
-    client: 'TATA TECHNOLOGIES',
-    item: 'Tactical Modular Daypack',
-    specNote: 'Dual Compartment + Air-Mesh Padding',
-    qty: '1,500 UNITS',
-    turnaround: '18 Days',
-    fabric: 'Ballistic Cordura 1000D',
-    branding: 'Laser Metal Plaque + Stitching',
-    img: '/products/cutout/3.png',
-    alt: 'Tata Technologies tactical modular daypack'
-  },
-  {
-    id: '02',
-    fleetTag: 'FLEET 02 // FIELD COMMUTER',
-    client: 'HERO MOTOCORP',
-    item: 'Enterprise Commuter Daypack',
-    specNote: 'Reflective Accents + Bar-Tack Stitching',
-    qty: '2,500 UNITS',
-    turnaround: '25 Days',
-    fabric: '1200D Twill Canvas',
-    branding: 'Reflective Screen Print',
-    img: '/products/cutout/20.png',
-    alt: 'Hero MotoCorp enterprise field team daypack'
-  },
-  {
-    id: '03',
-    fleetTag: 'FLEET 03 // CORPORATE CARRIER',
-    client: 'INFOSYS GLOBAL',
-    item: 'Signature Corporate Carrier',
-    specNote: 'Padded Tech Stash + Concealed Zip',
-    qty: '3,000 UNITS',
-    turnaround: '22 Days',
-    fabric: 'Waterproof Poly 900D',
-    branding: '3D Raised Embroidery',
-    img: '/products/cutout/9.png',
-    alt: 'Infosys signature corporate carrier daypack'
-  },
-  {
-    id: '04',
-    fleetTag: 'FLEET 04 // EXPEDITION DUFFEL',
-    client: 'ADANI ENTERPRISES',
-    item: 'Pro Expedition Heavy Duffel',
-    specNote: 'Tarpaulin Base + Reinforced Harness',
-    qty: '1,200 UNITS',
-    turnaround: '20 Days',
-    fabric: 'Weatherproof Heavy Canvas',
-    branding: 'Embossed Silicone Badge',
-    img: '/products/cutout/43.png',
-    alt: 'Adani expedition heavy duffel bag'
-  }
-];
-
-const PortfolioSection = () => {
+const PortfolioSection = ({ items = [], sectionData }) => {
+  const projects = items.length > 0 ? items.map((p, i) => ({
+    id: p.id || i,
+    fleetTag: p.category || 'FLEET',
+    client: p.title,
+    item: p.description,
+    specNote: 'Custom Specification',
+    qty: 'VERIFIED RUN',
+    turnaround: 'Standard',
+    fabric: 'Premium Material',
+    branding: 'Custom Branding',
+    img: p.image ? `https://askmebag.com/storage/${p.image}` : '/products/cutout/3.png',
+    alt: p.title
+  })) : [
+    {
+      id: '01',
+      fleetTag: 'FLEET 01 // TACTICAL DAYPACK',
+      client: 'TATA TECHNOLOGIES',
+      item: 'Tactical Modular Daypack',
+      specNote: 'Dual Compartment + Air-Mesh Padding',
+      qty: '1,500 UNITS',
+      turnaround: '18 Days',
+      fabric: 'Ballistic Cordura 1000D',
+      branding: 'Laser Metal Plaque + Stitching',
+      img: '/products/cutout/3.png',
+      alt: 'Tata Technologies tactical modular daypack'
+    },
+    {
+      id: '02',
+      fleetTag: 'FLEET 02 // FIELD COMMUTER',
+      client: 'HERO MOTOCORP',
+      item: 'Enterprise Commuter Daypack',
+      specNote: 'Reflective Accents + Bar-Tack Stitching',
+      qty: '2,500 UNITS',
+      turnaround: '25 Days',
+      fabric: '1200D Twill Canvas',
+      branding: 'Reflective Screen Print',
+      img: '/products/cutout/20.png',
+      alt: 'Hero MotoCorp enterprise field team daypack'
+    },
+    {
+      id: '03',
+      fleetTag: 'FLEET 03 // CORPORATE CARRIER',
+      client: 'INFOSYS GLOBAL',
+      item: 'Signature Corporate Carrier',
+      specNote: 'Padded Tech Stash + Concealed Zip',
+      qty: '3,000 UNITS',
+      turnaround: '22 Days',
+      fabric: 'Waterproof Poly 900D',
+      branding: '3D Raised Embroidery',
+      img: '/products/cutout/9.png',
+      alt: 'Infosys signature corporate carrier daypack'
+    },
+    {
+      id: '04',
+      fleetTag: 'FLEET 04 // EXPEDITION DUFFEL',
+      client: 'ADANI ENTERPRISES',
+      item: 'Pro Expedition Heavy Duffel',
+      specNote: 'Tarpaulin Base + Reinforced Harness',
+      qty: '1,200 UNITS',
+      turnaround: '20 Days',
+      fabric: 'Weatherproof Heavy Canvas',
+      branding: 'Embossed Silicone Badge',
+      img: '/products/cutout/43.png',
+      alt: 'Adani expedition heavy duffel bag'
+    }
+  ];
   const handleQuoteClick = (project) => {
     const count = parseInt(project.qty.replace(/\D/g, '')) || 500;
     const msg = generateBulkQuoteMessage(project.item, project.client, count);
@@ -72,12 +83,12 @@ const PortfolioSection = () => {
         {/* Section Header */}
         <div className="fleet-portfolio-header">
           <div className="header-left">
-            <span className="technical-text fleet-tagline">05 // CLIENT ARCHIVE</span>
+            <span className="technical-text fleet-tagline">{sectionData?.subtitle || '05 // CLIENT ARCHIVE'}</span>
             <h2 className="fleet-portfolio-title">
-              MADE FOR BRANDS, TEAMS &amp; INSTITUTIONS.
+              {sectionData?.title || 'MADE FOR BRANDS, TEAMS & INSTITUTIONS.'}
             </h2>
             <p className="fleet-portfolio-desc">
-              Direct OEM production runs engineered to exact corporate specs. Fully verified factory archival records.
+              {sectionData?.description || 'Direct OEM production runs engineered to exact corporate specs. Fully verified factory archival records.'}
             </p>
           </div>
           <div className="header-right-meta">

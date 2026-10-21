@@ -251,7 +251,13 @@
 
 @media (max-width: 768px) {
   .hero-scroll-track {
-    height: 200vh;
+    height: 280vh; /* Comfortable scrub distance across 5 narrative stages on mobile screens */
+    touch-action: pan-y;
+  }
+
+  .hero-pinned-viewport {
+    height: 100svh; /* Small viewport height on iOS/Android to prevent address bar jitter */
+    touch-action: pan-y;
   }
 
   .hero-telemetry-bar {

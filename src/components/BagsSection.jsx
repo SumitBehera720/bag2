@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, ArrowUpRight } from 'lucide-react';
 import './BagsSection.css';
 
-const collection = [
+const DEFAULT_COLLECTION = [
   { 
     id: '01', 
     title: 'Reinforced Cargo Pack', 
@@ -60,7 +60,22 @@ const collection = [
   },
 ];
 
-const BagsSection = () => {
+const BagsSection = ({ items = [], sectionData }) => {
+  const subtitle = sectionData?.subtitle || 'OUR MANUFACTURED BAGS';
+  const rawTitle = sectionData?.title || 'Different Needs.\nSame Quality.';
+  const titleParts = rawTitle.includes('\n') ? rawTitle.split('\n') : (rawTitle.includes('. ') ? rawTitle.split('. ') : [rawTitle]);
+
+  // Use passed items if available, otherwise fall back to curated default collection
+  const collection = items && items.length > 0 ? items.map((p, i) => ({
+    id: p.id || i,
+    title: p.name || p.title,
+    client: p.category || 'Category',
+    spec: p.description ? p.description.substring(0,30) + '...' : '',
+    tag: p.features ? p.features.substring(0,15) : 'PRODUCT',
+    img: p.image_url ? `https://askmebag.com/storage/${p.image_url}` : (p.image ? `https://askmebag.com/storage/${p.image}` : '/products/cutout/8.png'),
+    link: `/products/${p.id || p.sku || 'amb-08'}`
+  })) : DEFAULT_COLLECTION;
+
   const scrollRef = useRef(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -102,13 +117,22 @@ const BagsSection = () => {
       <div className="carousel-header-container">
         
         <div className="carousel-header-left">
-          <span className="technical-text mb-2">OUR MANUFACTURED BAGS</span>
+          <span className="technical-text mb-2">{subtitle}</span>
           <h2 className="carousel-title">
-            Different Needs.<br/>Same Quality.
+            {titleParts.map((part, i) => (
+              <React.Fragment key={i}>
+                {part}{i < titleParts.length - 1 && (part.endsWith('.') ? <><br/></> : <>. <br/></>)}
+              </React.Fragment>
+            ))}
           </h2>
+          {sectionData?.description && (
+            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.4rem', maxWidth: 460 }}>
+              {sectionData.description}
+            </p>
+          )}
           <div style={{ marginTop: '0.85rem' }}>
-            <Link to="/products" className="technical-text link-explore-archive">
-              EXPLORE ALL 47 PRODUCTION MODELS <ArrowUpRight size={14} />
+            <Link to={sectionData?.cta_url || "/products"} className="technical-text link-explore-archive">
+              {sectionData?.cta_text || 'EXPLORE ALL 47 PRODUCTION MODELS'} <ArrowUpRight size={14} />
             </Link>
           </div>
         </div>

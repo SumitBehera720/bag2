@@ -58,13 +58,19 @@ const Footer = () => {
                 <ShieldCheck size={13} /> ZERO DEFECT GUARANTEE
               </span>
               <span className="cert-pill technical-text">
-                <Clock size={13} /> 2–3 WK DISPATCH
+                <Clock size={13} /> 7–10 DAY DISPATCH
               </span>
             </div>
             <div className="footer-direct-contact">
-              <a href={`tel:${COMPANY_CONFIG.whatsappDisplay.replace(/\s+/g, '')}`} className="footer-contact-item" title="Call or WhatsApp">
+              <a href={`tel:${COMPANY_CONFIG.whatsappDisplay.replace(/\s+/g, '')}`} className="footer-contact-item" title="Call or WhatsApp Primary">
                 <Phone size={13} />
                 <span>{COMPANY_CONFIG.whatsappDisplay}</span>
+                <span className="cert-pill technical-text" style={{ padding: '1px 5px', fontSize: '0.65rem' }}>Primary</span>
+              </a>
+              <a href={`tel:${COMPANY_CONFIG.secondaryPhone.replace(/\s+/g, '')}`} className="footer-contact-item" title="Direct Desk Support">
+                <Phone size={13} />
+                <span>{COMPANY_CONFIG.secondaryPhone}</span>
+                <span className="cert-pill technical-text" style={{ padding: '1px 5px', fontSize: '0.65rem' }}>Direct</span>
               </a>
               <a href={`mailto:${COMPANY_CONFIG.email}`} className="footer-contact-item" title="Direct Email">
                 <Mail size={13} />

@@ -50,9 +50,14 @@ const processStages = [
   }
 ];
 
-const ProcessTimeline = () => {
+const ProcessTimeline = ({ sectionData }) => {
   const [activeStageIndex, setActiveStageIndex] = useState(0);
   const activeStage = processStages[activeStageIndex];
+
+  const subtitle = sectionData?.subtitle || '04 // RIGOROUS MANUFACTURING PIPELINE';
+  const rawTitle = sectionData?.title || 'FROM RAW MATERIAL\nTO INDUSTRIAL CARRY.';
+  const titleParts = rawTitle.includes('\n') ? rawTitle.split('\n') : [rawTitle];
+  const description = sectionData?.description || 'A custom bag is a sequence of small engineering decisions — textile selection, structural pattern cutting, heavy bar-tack stitching, branding, and multi-point QC inspection.';
 
   return (
     <section className="process-editorial-section" id="process">
@@ -61,17 +66,20 @@ const ProcessTimeline = () => {
         {/* Section Header */}
         <div className="process-header">
           <div className="process-eyebrow technical-text">
-            <span>04 // RIGOROUS MANUFACTURING PIPELINE</span>
+            <span>{subtitle}</span>
             <span className="process-badge">
               <CheckCircle2 size={12} /> 100% FACTORY DIRECT
             </span>
           </div>
           <h2 className="process-title">
-            FROM RAW MATERIAL<br/>
-            TO INDUSTRIAL CARRY.
+            {titleParts.map((part, i) => (
+              <React.Fragment key={i}>
+                {part}{i < titleParts.length - 1 && <br/>}
+              </React.Fragment>
+            ))}
           </h2>
           <p className="process-intro">
-            A custom bag is a sequence of small engineering decisions — textile selection, structural pattern cutting, heavy bar-tack stitching, branding, and multi-point QC inspection.
+            {description}
           </p>
         </div>
 

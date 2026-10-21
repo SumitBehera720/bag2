@@ -26,20 +26,25 @@ const Contact = () => {
 
     // 1. Save to Database using the new API
     try {
-      await fetch('https://darkgoldenrod-mink-800117.hostingersite.com/api/inquiries', {
+      await fetch('/api/inquiries', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({
-          name: companyName || 'Website Visitor',
-          email: 'not-provided@example.com', // Ask user for email if needed, or use default
-          subject: inquiryType,
-          message: `Estimated Quantity: ${estimatedQuantity}\n\nNote: ${note}`
+          name: companyName ? `${companyName} Representative` : 'Website Direct Inquiry',
+          company: companyName || '',
+          email: 'inquiry@askmebag.com',
+          phone: 'Not provided',
+          product_name: inquiryType,
+          quantity: parseInt(estimatedQuantity, 10) || 50,
+          customization_notes: `Requirement: ${inquiryType}`,
+          message: note || `Estimated quantity: ${estimatedQuantity} units. Custom inquiry via website.`
         })
       });
     } catch (err) {
-      console.error("Failed to save inquiry to database", err);
+      console.warn("Backend logging note:", err);
     }
 
     // 2. Continue to WhatsApp as before
@@ -173,11 +178,18 @@ const Contact = () => {
                 </div>
 
                 <div className="contact-block">
-                  <h3 className="technical-text contact-label"><Phone size={13} /> WHATSAPP DIRECT ORDER TAKING</h3>
-                  <a href={buildWhatsAppUrl("Hello ASKMEBAG, I would like to place an order / request a quote.")} className="contact-value-link" target="_blank" rel="noreferrer">
-                    {COMPANY_CONFIG.whatsappDisplay}
-                  </a>
-                  <p className="contact-value" style={{ fontSize: '0.75rem', opacity: 0.7, margin: '2px 0 0' }}>Instant digital mockup &amp; volume quotation</p>
+                  <h3 className="technical-text contact-label"><Phone size={13} /> DIRECT PHONE &amp; WHATSAPP HOTLINES</h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <a href={buildWhatsAppUrl("Hello ASKMEBAG, I would like to place an order / request a quote.")} className="contact-value-link" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <strong>{COMPANY_CONFIG.whatsappDisplay}</strong>
+                      <span className="cert-pill technical-text" style={{ fontSize: '0.68rem', padding: '1px 6px', background: '#25D366', color: '#0A1E11' }}>WhatsApp / Order Desk</span>
+                    </a>
+                    <a href={`tel:${COMPANY_CONFIG.secondaryPhone.replace(/\s+/g, '')}`} className="contact-value-link" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <strong>{COMPANY_CONFIG.secondaryPhone}</strong>
+                      <span className="cert-pill technical-text" style={{ fontSize: '0.68rem', padding: '1px 6px' }}>Direct Phone Support</span>
+                    </a>
+                  </div>
+                  <p className="contact-value" style={{ fontSize: '0.75rem', opacity: 0.7, margin: '4px 0 0' }}>Instant digital mockup, pricing &amp; volume quotation</p>
                 </div>
 
                 <div className="contact-block">

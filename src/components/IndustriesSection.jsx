@@ -42,8 +42,13 @@ const industries = [
   }
 ];
 
-const IndustriesSection = () => {
+const IndustriesSection = ({ sectionData }) => {
   const scrollRef = useRef(null);
+
+  const subtitle = sectionData?.subtitle || 'CLIENT ARCHIVE // REAL MANUFACTURING';
+  const rawTitle = sectionData?.title || 'Made for\nBrands, Teams &\nInstitutions.';
+  const titleParts = rawTitle.includes('\n') ? rawTitle.split('\n') : [rawTitle];
+  const description = sectionData?.description || 'Real projects delivered at scale. Engineered from material selection to custom branding for enterprises worldwide.';
 
   const handleScroll = (direction) => {
     if (scrollRef.current) {
@@ -65,14 +70,16 @@ const IndustriesSection = () => {
         
         <div className="horizontal-industries-sidebar">
           <div className="sidebar-content-sticky">
-            <span className="technical-text mb-4">CLIENT ARCHIVE // REAL MANUFACTURING</span>
+            <span className="technical-text mb-4">{subtitle}</span>
             <h2 className="industries-sidebar-title">
-              Made for<br/>
-              Brands, Teams &amp;<br/>
-              Institutions.
+              {titleParts.map((part, i) => (
+                <React.Fragment key={i}>
+                  {part}{i < titleParts.length - 1 && <br/>}
+                </React.Fragment>
+              ))}
             </h2>
             <p className="industries-sidebar-desc">
-              Real projects delivered at scale. Engineered from material selection to custom branding for enterprises worldwide.
+              {description}
             </p>
             
             <div className="industries-nav-row">

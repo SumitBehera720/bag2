@@ -4,14 +4,18 @@ export const COMPANY_CONFIG = {
   tradeName: 'ASKMEBAG',
   gstNo: '27AEOPI4410A1ZZ',
   tagline: 'CUSTOM BAGS. BUILT AROUND YOUR IDEA.',
-  // Official WhatsApp Business Number for direct order taking (+91 90044 08854)
+  // Official WhatsApp Business Numbers & Direct Support
   whatsappNumber: '919004408854',
   whatsappDisplay: '+91 90044 08854',
+  secondaryPhone: '+91 87576 01990',
+  secondaryPhoneNumber: '918757601990',
+  secondaryPhoneDisplay: '+91 87576 01990',
+  phoneNumbers: ['+91 90044 08854', '+91 87576 01990'],
   email: 'askmebag@gmail.com',
   address: 'Parasnath Complex, Bldg B-13, Gala No 108, First Floor, Dapode Road, Bhiwandi, Mumbai - 421302, Maharashtra, India',
   shortAddress: 'Bhiwandi, Mumbai - 421302, India',
   location: 'Bhiwandi, Mumbai, India',
-  leadTimeDefault: '2-3 Weeks',
+  leadTimeDefault: '7-10 Days',
   minOrderDefault: 50,
 };
 

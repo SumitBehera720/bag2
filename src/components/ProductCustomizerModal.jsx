@@ -127,6 +127,23 @@ const ProductCustomizerModal = ({ product, isOpen, onClose }) => {
   };
 
   const handleSendWhatsAppOrder = () => {
+    // 1. Asynchronously log inquiry into CRM pipeline
+    try {
+      fetch('/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: logoText !== 'YOUR BRAND' ? logoText : 'Custom Fleet Inquiry',
+          company: logoText !== 'YOUR BRAND' ? logoText : '',
+          product_name: product.name,
+          quantity: quantity,
+          customization_notes: `Material: ${selectedMaterial} | Branding: ${brandingMethod} (${logoPosition.label}) | Hardware: ${hardware}`,
+          message: notes || `Features: ${selectedFeatures.join(', ')}`
+        })
+      }).catch(() => {});
+    } catch (_) {}
+
+    // 2. Open WhatsApp
     const message = formatCustomSpecText();
     window.open(buildWhatsAppUrl(message), '_blank', 'noopener,noreferrer');
   };

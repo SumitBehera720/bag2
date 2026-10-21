@@ -4,7 +4,12 @@ import { ArrowUpRight, Sparkles, CheckCircle2, Feather, Shield, Compass } from '
 import { buildWhatsAppUrl } from '../config';
 import './ComfortStyleSection.css';
 
-const ComfortStyleSection = () => {
+const ComfortStyleSection = ({ sectionData }) => {
+  const subtitle = sectionData?.subtitle || 'ATELIER ERGONOMICS // THE CRAFT PHILOSOPHY';
+  const rawTitle = sectionData?.title || 'Engineered for Comfort.\nDesigned for Style.';
+  const titleParts = rawTitle.includes('\n') ? rawTitle.split('\n') : (rawTitle.includes('. ') ? rawTitle.split('. ') : [rawTitle]);
+  const description = sectionData?.description || "Where human biomechanics meets executive boardroom elegance. Every bespoke silhouette is crafted with ergonomic weight-distribution harnesses, breathable airflow channels, and tailored waterproof textiles — ensuring all-day comfort without sacrificing your brand's sophisticated presence.";
+
   return (
     <section className="comfort-style-section" id="comfort-style">
       <div className="editorial-container">
@@ -13,14 +18,17 @@ const ComfortStyleSection = () => {
         <div className="comfort-header">
           <div className="comfort-eyebrow technical-text">
             <Sparkles size={13} className="sparkle-icon" />
-            <span>ATELIER ERGONOMICS // THE CRAFT PHILOSOPHY</span>
+            <span>{subtitle}</span>
           </div>
           <h2 className="comfort-slogan-title">
-            Engineered for Comfort.<br className="desktop-break" />
-            Designed for Style.
+            {titleParts.map((part, i) => (
+              <React.Fragment key={i}>
+                {part}{i < titleParts.length - 1 && (part.endsWith('.') ? <br className="desktop-break" /> : <>. <br className="desktop-break" /></>)}
+              </React.Fragment>
+            ))}
           </h2>
           <p className="comfort-slogan-lead">
-            Where human biomechanics meets executive boardroom elegance. Every bespoke silhouette is crafted with ergonomic weight-distribution harnesses, breathable airflow channels, and tailored waterproof textiles — ensuring all-day comfort without sacrificing your brand's sophisticated presence.
+            {description}
           </p>
         </div>
 

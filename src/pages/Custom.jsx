@@ -433,7 +433,7 @@ ${notes ? `Notes: ${notes}` : ''}`;
                 className="studio-header-wa-btn technical-text"
               >
                 <MessageCircle size={15} />
-                <span>HOTLINE: {COMPANY_CONFIG.whatsappDisplay}</span>
+                <span>HOTLINE: {COMPANY_CONFIG.whatsappDisplay} / {COMPANY_CONFIG.secondaryPhone}</span>
               </a>
             </div>
           </div>

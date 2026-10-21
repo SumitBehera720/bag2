@@ -65,7 +65,10 @@ const TIERS = [
   }
 ];
 
-const BulkOrderTiers = ({ title = "Volume Fleet Production & Bulk Orders", subtitle = "Engineered tiered commissions for executive corporate gifts, team deployments, and global enterprise operations." }) => {
+const BulkOrderTiers = ({ title, subtitle, sectionData }) => {
+  const finalTitle = sectionData?.title || title || "Volume Fleet Production & Bulk Orders";
+  const finalSubtitle = sectionData?.description || subtitle || "Engineered tiered commissions for executive corporate gifts, team deployments, and global enterprise operations.";
+  const eyebrow = sectionData?.subtitle || "VOLUME COMMISSIONS // ATELIER TIERS";
   
   const handleInquire = (tier) => {
     const message = [
@@ -91,9 +94,9 @@ const BulkOrderTiers = ({ title = "Volume Fleet Production & Bulk Orders", subti
         
         {/* Section Heading */}
         <div className="bulk-section-header">
-          <span className="technical-text bulk-eyebrow">VOLUME COMMISSIONS // ATELIER TIERS</span>
-          <h2 className="bulk-title">{title}</h2>
-          {subtitle && <p className="bulk-subtitle">{subtitle}</p>}
+          <span className="technical-text bulk-eyebrow">{eyebrow}</span>
+          <h2 className="bulk-title">{finalTitle}</h2>
+          {finalSubtitle && <p className="bulk-subtitle">{finalSubtitle}</p>}
         </div>
 
         {/* 3 Tier Cards Grid */}
