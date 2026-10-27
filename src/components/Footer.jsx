@@ -45,7 +45,14 @@ const Footer = () => {
           
           {/* Brand Column */}
           <div className="footer-col brand-col">
-            <h2 className="footer-logo">{COMPANY_CONFIG.name}</h2>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+              <img 
+                src="/askmebag-logo-white-1600.png" 
+                alt={COMPANY_CONFIG.name} 
+                style={{ height: '36px', width: 'auto', objectFit: 'contain' }} 
+              />
+              <h2 className="footer-logo" style={{ margin: 0 }}>{COMPANY_CONFIG.name}</h2>
+            </div>
             <div className="footer-gst-badge technical-text" style={{ margin: '6px 0 10px', display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.72rem', background: 'rgba(217, 211, 200, 0.25)', padding: '3px 8px', borderRadius: '4px', border: '1px solid var(--color-stone)' }}>
               <ShieldCheck size={13} style={{ color: '#25D366' }} />
               <span>GSTIN: <strong>{COMPANY_CONFIG.gstNo}</strong></span>

@@ -48,7 +48,14 @@ const Navbar = () => {
           <div className="nav-container-inner">
             
             <div className="nav-brand">
-              <Link to="/">ASKMEBAG</Link>
+              <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+                <img 
+                  src="/askmebag-logo-white-1600.png" 
+                  alt="ASKMEBAG" 
+                  className="nav-brand-logo" 
+                />
+                <span className="nav-brand-text">ASKMEBAG</span>
+              </Link>
             </div>
             
             {/* Desktop Navigation */}
@@ -89,7 +96,14 @@ const Navbar = () => {
       <div className={`mobile-nav-overlay ${mobileMenuOpen ? 'open' : ''}`}>
         
         <div className="mobile-nav-header">
-          <Link to="/" className="nav-brand" onClick={() => setMobileMenuOpen(false)}>ASKMEBAG</Link>
+          <Link to="/" className="nav-brand" onClick={() => setMobileMenuOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+            <img 
+              src="/askmebag-logo-white-1600.png" 
+              alt="ASKMEBAG" 
+              className="nav-brand-logo" 
+            />
+            <span className="nav-brand-text">ASKMEBAG</span>
+          </Link>
           <button className="mobile-menu-close technical-text" onClick={() => setMobileMenuOpen(false)}>
             CLOSE
           </button>

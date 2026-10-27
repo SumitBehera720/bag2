@@ -26,12 +26,15 @@ export default function Login() {
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-primary)', padding: 20 }}>
       <div style={{ width: '100%', maxWidth: 400 }}>
         {/* Logo */}
-        <div style={{ textAlign: 'center', marginBottom: 32 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 56, height: 56, background: 'var(--accent)', borderRadius: 14, marginBottom: 16 }}>
-            <ShoppingBag size={28} color="#000" />
-          </div>
-          <h1 style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.5px' }}>ASKMEBAG</h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: 13, marginTop: 4 }}>Admin Panel — Sign in to continue</p>
+        <div style={{ textAlign: 'center', marginBottom: 28 }}>
+          <img 
+            src="/askmebag-logo-white-1600.png" 
+            alt="ASKMEBAG" 
+            style={{ height: 48, width: 'auto', margin: '0 auto 12px', display: 'block', objectFit: 'contain' }} 
+            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+          />
+          <h1 style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.5px' }}>ASKMEBAG</h1>
+          <p style={{ color: 'var(--text-muted)', fontSize: 13, marginTop: 4 }}>Admin CMS & CRM — Sign in to continue</p>
         </div>
 
         {/* Card */}
@@ -45,9 +48,9 @@ export default function Login() {
             )}
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label className="form-label required">Email Address</label>
+                <label className="form-label required">Email or Username</label>
                 <input
-                  type="email"
+                  type="text"
                   className="form-control"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
@@ -87,8 +90,8 @@ export default function Login() {
           </div>
         </div>
 
-        <p style={{ textAlign: 'center', marginTop: 20, fontSize: 12, color: 'var(--text-muted)' }}>
-          Protected admin area — unauthorized access prohibited
+        <p style={{ textAlign: 'center', marginTop: 16, fontSize: 12, color: 'var(--text-muted)' }}>
+          Default admin: <strong>admin@askmebag.com</strong>
         </p>
       </div>
     </div>

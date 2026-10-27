@@ -56,18 +56,12 @@ const AdminLayout = ({ children }) => {
       {/* Sidebar */}
       <aside className={`sidebar ${mobileNavOpen ? 'open' : ''}`}>
         <div className="sidebar-logo">
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 34,
-            height: 34,
-            background: 'var(--accent)',
-            borderRadius: 8,
-            color: '#000'
-          }}>
-            <ShoppingBag size={20} strokeWidth={2.5} />
-          </div>
+          <img 
+            src="/askmebag-logo-white-1600.png" 
+            alt="ASKMEBAG" 
+            style={{ height: 32, width: 'auto', objectFit: 'contain' }}
+            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+          />
           <div>
             <div className="sidebar-logo-text">ASKMEBAG</div>
             <div style={{ fontSize: 10, color: 'var(--text-muted)', letterSpacing: '0.5px' }}>B2B CMS & CRM</div>

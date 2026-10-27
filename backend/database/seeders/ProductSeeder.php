@@ -43,7 +43,7 @@ class ProductSeeder extends Seeder
                     'features' => $p['features'] ?? null,
                     'branding_options' => $p['brandingOptions'] ?? null,
                     'is_active' => true,
-                    'is_featured' => $p['isFeatured'] ?? (($p['index'] ?? 99) < 8),
+                    'is_featured' => $p['isFeatured'] ?? (($p['index'] ?? 99) < 12),
                     'sort_order' => $p['index'] ?? 0,
                 ]
             );

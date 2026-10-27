@@ -39,6 +39,78 @@ const industries = [
     img: '/products/styled/10.png', 
     features: ['Metal Badge Branding', '15.6" Shock Cushion', 'Trolley Strap', 'YKK Metal Zips'],
     link: '/products?cat=laptop'
+  },
+  { 
+    id: '05', 
+    client: 'ADANI ENTERPRISES',
+    title: 'Heavy Logistics & Cargo Fleet', 
+    subtitle: '750 Reinforced Field Packs', 
+    img: '/products/styled/4.png', 
+    features: ['Cordura 1000D Weave', 'High-Vis Accent Trims', 'Modular Gear Loops', 'All-Weather Coating'],
+    link: '/products?cat=backpacks'
+  },
+  { 
+    id: '06', 
+    client: 'TVS MOBILITY',
+    title: 'Field Service Crossbody Fleet', 
+    subtitle: '600 Mobility Slings', 
+    img: '/products/styled/27.png', 
+    features: ['Ergonomic Single Strap', 'Tactical MOLLE Webbing', 'Quick-Access Tool Bay', 'Padded Phone Chamber'],
+    link: '/products?cat=slings'
+  },
+  { 
+    id: '07', 
+    client: 'COMPUTER WORLD IT',
+    title: 'Enterprise Onboarding Fleet', 
+    subtitle: '1,500 Dual Commuter Packs', 
+    img: '/products/styled/14.png', 
+    features: ['Debossed Brand Emblem', 'Double Padded Tech Sleeve', 'Water Bottle Holsters', 'Luggage Pass-Through'],
+    link: '/products?cat=backpacks'
+  },
+  { 
+    id: '08', 
+    client: 'GLOBAL ENERGY SUMMIT',
+    title: 'Conference & Event Delegate Fleet', 
+    subtitle: '2,500 Delegate Daypacks', 
+    img: '/products/styled/20.png', 
+    features: ['Custom Pantone Dyeing', 'High-Speed Bulk Dispatch', 'Conference Badge Pocket', 'Featherlight Weight'],
+    link: '/products?cat=backpacks'
+  },
+  { 
+    id: '09', 
+    client: 'APEX HEALTHCARE',
+    title: 'Medical & Diagnostic Carry Fleet', 
+    subtitle: '450 Shockproof Organizers', 
+    img: '/products/styled/17.png', 
+    features: ['Antimicrobial Lining', 'Customized Internal Dividers', 'Water-Resistant Zippers', 'Hi-Grade Foam Shell'],
+    link: '/products?cat=laptop'
+  },
+  { 
+    id: '10', 
+    client: 'TITAN INDUSTRIAL DEFENSE',
+    title: 'Tactical Expedition Fleet', 
+    subtitle: '850 Ballistic Packs', 
+    img: '/products/styled/3.png', 
+    features: ['Ballistic Nylon 1680D', 'Heavy Bartack Seams', 'Tactical Carabiner Anchors', 'Reinforced Base Board'],
+    link: '/products?cat=backpacks'
+  },
+  { 
+    id: '11', 
+    client: 'HORIZON LUXURY RESORTS',
+    title: 'Hospitality & VIP Weekend Fleet', 
+    subtitle: '700 Premium Duffle Bags', 
+    img: '/products/styled/42.png', 
+    features: ['Vegetable-Tanned Leather Trim', 'Matte Brass Hardware', 'Dedicated Garment Section', 'Waterproof Base'],
+    link: '/products?cat=duffels'
+  },
+  { 
+    id: '12', 
+    client: 'RELIANCE MERCHANDISING',
+    title: 'Retail Brand Ambassador Fleet', 
+    subtitle: '2,000 Custom Totes & Packs', 
+    img: '/products/styled/8.png', 
+    features: ['Full-Bleed Direct Print', 'Reinforced Dual Handles', 'Interior Zipper Security', 'Custom Woven Label'],
+    link: '/products?cat=laptop'
   }
 ];
 

@@ -88,7 +88,7 @@ const CustomizationSection = ({ sectionData }) => {
             <div className="custom-callout-strip">
               <div className="callout-item">
                 <span className="callout-num technical-text">5–7 DAYS</span>
-                <span className="callout-label">Physical Prototype</span>
+                <span className="callout-label">Final Delivery</span>
               </div>
               <div className="callout-divider"></div>
               <div className="callout-item">

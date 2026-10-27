@@ -35,12 +35,32 @@
   letter-spacing: -0.02em;
   text-decoration: none;
   color: var(--color-charcoal);
-  font-weight: 400;
+  font-weight: 700;
   transition: opacity 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .nav-brand a:hover {
-  opacity: 0.8;
+  opacity: 0.85;
+}
+
+.nav-brand-logo {
+  height: 34px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  filter: brightness(0); /* sharp black on light navbar */
+  transition: transform 0.2s;
+}
+
+.nav-brand-text {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-charcoal);
 }
 
 .nav-menu {

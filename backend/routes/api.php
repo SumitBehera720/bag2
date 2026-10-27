@@ -63,9 +63,9 @@ Route::get('/public/sections', function (Request $request) {
 });
 
 Route::get('/home-data', function () {
-    $featured = Product::with('images')->where('is_active', true)->where('is_featured', true)->orderBy('sort_order')->take(8)->get();
+    $featured = Product::with('images')->where('is_active', true)->where('is_featured', true)->orderBy('sort_order')->take(12)->get();
     if ($featured->isEmpty()) {
-        $featured = Product::with('images')->where('is_active', true)->orderBy('sort_order')->take(8)->get();
+        $featured = Product::with('images')->where('is_active', true)->orderBy('sort_order')->take(12)->get();
     }
     return response()->json([
         'settings' => SiteSetting::all()->pluck('value', 'key'),

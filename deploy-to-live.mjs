@@ -104,6 +104,9 @@ async function deploy() {
   if (fs.existsSync('dist/icons.svg')) {
     await ssh.putFile('dist/icons.svg', `${PUBLIC_HTML}/icons.svg`);
   }
+  if (fs.existsSync('dist/askmebag-logo-white-1600.png')) {
+    await ssh.putFile('dist/askmebag-logo-white-1600.png', `${PUBLIC_HTML}/askmebag-logo-white-1600.png`);
+  }
   console.log('   - Uploading assets...');
   await uploadDir('dist/assets', `${PUBLIC_HTML}/assets`);
 
