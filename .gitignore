@@ -13,6 +13,8 @@ dist-ssr
 *.local
 product/
 *.zip
+*.tar.gz
+scratch/
 
 # Editor directories and files
 .vscode/*
