@@ -222,6 +222,9 @@
   flex-direction: column;
   gap: 3px;
   padding: 0 2px;
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
 }
 
 .carousel-card-client {
@@ -231,6 +234,13 @@
   color: var(--color-olive);
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 .carousel-card-title {
@@ -244,7 +254,18 @@
   letter-spacing: -0.01em;
   color: var(--color-charcoal);
   margin: 0;
+  min-width: 0;
+  width: 100%;
   transition: color 0.2s ease;
+}
+
+.carousel-card-title span {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
 }
 
 .carousel-card:hover .carousel-card-title {
@@ -252,6 +273,7 @@
 }
 
 .card-arrow {
+  flex-shrink: 0;
   transition: transform 0.3s ease;
   color: var(--color-charcoal);
 }

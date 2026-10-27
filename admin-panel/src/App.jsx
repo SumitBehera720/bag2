@@ -16,6 +16,7 @@ import Testimonials from './pages/Testimonials';
 import Settings from './pages/Settings';
 import MediaLibrary from './pages/MediaLibrary';
 import ActivityLogs from './pages/ActivityLogs';
+import InstagramSection from './pages/InstagramSection';
 
 // Icons
 import {
@@ -23,6 +24,24 @@ import {
   Layout, MessageSquare, Image, Settings as SettingsIcon,
   Activity, LogOut, ExternalLink, Plus, User, Menu, X
 } from 'lucide-react';
+
+const InstagramIcon = ({ size = 18, style = {} }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    style={style}
+  >
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+);
 
 const NavItem = ({ to, icon: Icon, onClick, children }) => {
   const location = useLocation();
@@ -99,6 +118,7 @@ const AdminLayout = ({ children }) => {
           <div className="sidebar-group">
             <div className="sidebar-group-label">WEBSITE CMS</div>
             <NavItem to="/sections" icon={Layout} onClick={closeMobileNav}>Page Sections</NavItem>
+            <NavItem to="/instagram" icon={InstagramIcon} onClick={closeMobileNav}>Instagram Feed</NavItem>
             <NavItem to="/testimonials" icon={MessageSquare} onClick={closeMobileNav}>Reviews / Proof</NavItem>
             <NavItem to="/media" icon={Image} onClick={closeMobileNav}>Media Assets</NavItem>
           </div>
@@ -216,6 +236,7 @@ const ProtectedRoutes = () => {
         <Route path="/products/:id/edit" element={<ProductEdit />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/sections" element={<Sections />} />
+        <Route path="/instagram" element={<InstagramSection />} />
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/media" element={<MediaLibrary />} />

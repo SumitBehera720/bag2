@@ -1,10 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { api } from '../api';
 import {
   Layout, Edit3, Eye, EyeOff, Save, RefreshCw, X,
   CheckCircle, ChevronRight, ChevronDown, Film, Type,
   Upload, Trash2
 } from 'lucide-react';
+
+const InstagramIcon = ({ size = 14, style = {} }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    style={style}
+  >
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+);
 
 // Default chapter data (mirrors HeroExperience.jsx)
 const DEFAULT_CHAPTERS = [
@@ -276,17 +295,27 @@ export default function Sections() {
                         </button>
                       </td>
                       <td style={{ textAlign: 'right' }}>
-                        <button
-                          onClick={() => openEditor(sec)}
-                          className="btn btn-secondary btn-sm"
-                          style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
-                        >
-                          {sec.section_key === 'hero' ? (
-                            <><Film size={14} /> Edit 5 Scroll Stages</>
-                          ) : (
-                            <><Edit3 size={14} /> Edit Content</>
-                          )}
-                        </button>
+                        {sec.section_key === 'instagram' ? (
+                          <Link
+                            to="/instagram"
+                            className="btn btn-secondary btn-sm"
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: '#e1306c', borderColor: 'rgba(225,48,108,0.35)' }}
+                          >
+                            <InstagramIcon size={14} /> Manage Instagram Feed
+                          </Link>
+                        ) : (
+                          <button
+                            onClick={() => openEditor(sec)}
+                            className="btn btn-secondary btn-sm"
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                          >
+                            {sec.section_key === 'hero' ? (
+                              <><Film size={14} /> Edit 5 Scroll Stages</>
+                            ) : (
+                              <><Edit3 size={14} /> Edit Content</>
+                            )}
+                          </button>
+                        )}
                       </td>
                     </tr>
                   );

@@ -139,7 +139,7 @@ const BagsSection = ({ items = [], sectionData }) => {
     } else if (p.capacity) {
       rawSpec = `${p.capacity} • ${p.category || 'Carry Solution'}`;
     }
-    const spec = rawSpec.length > 34 ? rawSpec.substring(0, 34) + '...' : rawSpec;
+    const spec = rawSpec;
 
     const img = p.primary_image || (p.image_url 
       ? (p.image_url.startsWith('http') ? p.image_url : `https://askmebag.com/storage/${p.image_url}`)
@@ -260,10 +260,10 @@ const BagsSection = ({ items = [], sectionData }) => {
                 />
               </div>
               <div className="carousel-card-meta">
-                <span className="carousel-card-client technical-text">
+                <span className="carousel-card-client technical-text" title={`${item.client}${item.spec ? ` • ${item.spec}` : ''}`}>
                   {item.client}{item.spec ? ` • ${item.spec}` : ''}
                 </span>
-                <h3 className="carousel-card-title">
+                <h3 className="carousel-card-title" title={item.title}>
                   <span>{item.title}</span>
                   <ArrowRight size={14} className="card-arrow" />
                 </h3>

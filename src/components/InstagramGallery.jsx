@@ -78,11 +78,20 @@ const DEFAULT_POSTS = [
 ];
 
 export default function InstagramGallery({ sectionData }) {
+  let content = sectionData?.content;
+  if (typeof content === 'string') {
+    try { content = JSON.parse(content); } catch {}
+  }
+
+  const handle = content?.handle || '@askmebag';
   const title = sectionData?.title || 'Inside the Production Fleet.';
-  const subtitle = sectionData?.subtitle || 'ATELIER SOCIAL // @ASKMEBAG';
+  const subtitle = sectionData?.subtitle || `ATELIER SOCIAL // ${handle}`;
   const description = sectionData?.description || 'From raw Cordura 1000D weave slicing to international palletized freight. Follow our real-time factory floor commissions.';
-  const instagramUrl = sectionData?.cta_url || 'https://instagram.com/askmebag';
-  const ctaText = sectionData?.cta_text || 'FOLLOW @ASKMEBAG';
+  const instagramUrl = sectionData?.cta_url || content?.url || `https://instagram.com/${handle.replace('@', '')}`;
+  const ctaText = sectionData?.cta_text || `FOLLOW ${handle}`;
+
+  const rawPosts = content?.posts || (Array.isArray(content) ? content : null);
+  const posts = (Array.isArray(rawPosts) && rawPosts.length > 0) ? rawPosts : DEFAULT_POSTS;
 
   return (
     <section className="instagram-gallery-section" id="instagram">
@@ -116,23 +125,32 @@ export default function InstagramGallery({ sectionData }) {
           </a>
         </div>
 
-        {/* 6-Card Gallery Grid */}
+        {/* Gallery Grid */}
         <div className="instagram-grid">
-          {DEFAULT_POSTS.map(post => (
-            <a 
-              key={post.id}
-              href={post.url} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="instagram-card"
-              title={post.caption}
-            >
-              <img 
-                src={post.img} 
-                alt={post.tag} 
-                className="instagram-img"
-                loading="lazy"
-              />
+          {posts.map((post, i) => {
+            const postImg = post.img?.startsWith('http') || post.img?.startsWith('/')
+              ? post.img
+              : `https://askmebag.com/storage/${post.img}`;
+            const postLink = post.url || instagramUrl;
+
+            return (
+              <a 
+                key={post.id || i}
+                href={postLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="instagram-card"
+                title={post.caption}
+              >
+                <img 
+                  src={postImg} 
+                  alt={post.tag || 'Instagram post'} 
+                  className="instagram-img"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.src = DEFAULT_POSTS[i % DEFAULT_POSTS.length].img;
+                  }}
+                />
               <div className="instagram-overlay">
                 <div className="instagram-card-top">
                   <span className="instagram-tag-badge technical-text">{post.tag}</span>
@@ -153,7 +171,8 @@ export default function InstagramGallery({ sectionData }) {
                 </div>
               </div>
             </a>
-          ))}
+          );
+          })}
         </div>
 
       </div>
