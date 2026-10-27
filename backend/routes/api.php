@@ -63,17 +63,28 @@ Route::get('/public/sections', function (Request $request) {
 });
 
 Route::get('/home-data', function () {
+    $featured = Product::with('images')->where('is_active', true)->where('is_featured', true)->orderBy('sort_order')->take(8)->get();
+    if ($featured->isEmpty()) {
+        $featured = Product::with('images')->where('is_active', true)->orderBy('sort_order')->take(8)->get();
+    }
     return response()->json([
         'settings' => SiteSetting::all()->pluck('value', 'key'),
         'categories' => Category::where('is_active', true)->orderBy('display_order')->get(),
-        'featured_products' => Product::with('images')->where('is_active', true)->where('is_featured', true)->orderBy('sort_order')->take(8)->get(),
+        'featured_products' => $featured,
         'testimonials' => Testimonial::where('is_active', true)->orderBy('id')->get(),
         'portfolio' => PortfolioItem::where('is_active', true)->orderBy('id')->get(),
         'sections' => PageSection::where('page', 'homepage')->orderBy('sort_order')->get(),
     ]);
 });
 
-// Legacy routes (keep for backward compat)
+// Direct and legacy public routes (backward compatibility)
+Route::get('/categories', function () {
+    return response()->json(Category::where('is_active', true)->orderBy('display_order')->get());
+});
+Route::get('/settings', [SettingController::class, 'publicSettings']);
+Route::get('/testimonials', function () {
+    return response()->json(Testimonial::where('is_active', true)->orderBy('id')->get());
+});
 Route::get('/products', function () {
     return response()->json(Product::with('images')->where('is_active', true)->orderBy('sort_order')->get());
 });

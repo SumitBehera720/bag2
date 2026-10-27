@@ -154,6 +154,38 @@ class DatabaseSeeder extends Seeder
             PageSection::updateOrCreate(['section_key' => $section['section_key']], $section);
         }
 
+        // ── Initial Testimonials ──────────────────────────────────
+        $testimonials = [
+            [
+                'name' => 'Operations Director',
+                'role' => 'HEAD OF OPERATIONS',
+                'company' => 'TECH BRAND',
+                'content' => 'The material quality and attention to stitching detail exceeded our technical requirements. A truly robust carry solution for our engineering team.',
+                'rating' => 5,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Event Producer',
+                'role' => 'EVENT DIRECTOR',
+                'company' => 'GLOBAL SUMMIT',
+                'content' => 'Managing logistics for 2,000 attendees is complex enough. The bags arrived precisely on schedule, uniformly packed, and built to an incredibly high standard.',
+                'rating' => 5,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Design Lead',
+                'role' => 'CREATIVE DIRECTOR',
+                'company' => 'LIFESTYLE BRAND',
+                'content' => 'We required custom hardware and specific fabric dying to match our brand identity. The prototyping process was transparent and the final execution was flawless.',
+                'rating' => 5,
+                'is_active' => true,
+            ],
+        ];
+
+        foreach ($testimonials as $t) {
+            \App\Models\Testimonial::updateOrCreate(['role' => $t['role'], 'company' => $t['company']], $t);
+        }
+
         // Seed products from products.json
         $this->call(ProductSeeder::class);
     }
