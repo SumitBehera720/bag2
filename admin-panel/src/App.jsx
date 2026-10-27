@@ -226,12 +226,27 @@ const ProtectedRoutes = () => {
   );
 };
 
+const PublicLoginRoute = () => {
+  const { user, loading } = useAuth();
+  if (loading) {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-primary)' }}>
+        <div className="loader"><div className="spinner" /></div>
+      </div>
+    );
+  }
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
+  return <Login />;
+};
+
 export default function App() {
   return (
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<PublicLoginRoute />} />
           <Route path="/*" element={<ProtectedRoutes />} />
         </Routes>
       </Router>

@@ -1,20 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import { ShoppingBag, Lock, AlertCircle, Eye, EyeOff } from 'lucide-react';
 
 export default function Login() {
-  const { login } = useAuth();
+  const navigate = useNavigate();
+  const { user, login } = useAuth();
   const [email, setEmail] = useState('admin@askmebag.com');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPw, setShowPw] = useState(false);
 
+  useEffect(() => {
+    if (user) {
+      navigate('/', { replace: true });
+    }
+  }, [user, navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(''); setLoading(true);
+    setError('');
+    setLoading(true);
     try {
-      await login(email, password);
+      const loggedUser = await login(email, password);
+      if (loggedUser) {
+        navigate('/', { replace: true });
+      }
     } catch (err) {
       setError(err.message || 'Invalid credentials. Please try again.');
     } finally {

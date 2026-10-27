@@ -247,33 +247,28 @@ const BagsSection = ({ items = [], sectionData }) => {
 
         <div className="carousel-track" ref={scrollRef} onScroll={handleScroll}>
           {collection.map((item) => (
-            <div className="carousel-card-item" key={item.id}>
-              
-              <Link to={item.link} className="carousel-card-img-wrapper">
+            <Link to={item.link} className="carousel-card" key={item.id}>
+              <div className="carousel-card-img">
                 <span className="carousel-card-tag technical-text">{item.tag}</span>
                 <img 
                   src={item.img} 
                   alt={item.title} 
-                  className="carousel-product-img"
                   loading="lazy"
                   onError={(e) => {
                     e.currentTarget.src = '/products/cutout/8.png';
                   }}
                 />
-              </Link>
-              
-              <div className="carousel-card-details">
-                <div className="technical-text item-client">{item.client}</div>
-                {item.spec && <div className="technical-text item-spec">{item.spec}</div>}
-                <div className="card-bottom-row">
-                  <h3 className="item-title">{item.title}</h3>
-                  <Link to={item.link} className="item-arrow-btn" aria-label={`View ${item.title}`}>
-                    <ArrowRight size={16} />
-                  </Link>
-                </div>
               </div>
-
-            </div>
+              <div className="carousel-card-meta">
+                <span className="carousel-card-client technical-text">
+                  {item.client}{item.spec ? ` • ${item.spec}` : ''}
+                </span>
+                <h3 className="carousel-card-title">
+                  <span>{item.title}</span>
+                  <ArrowRight size={14} className="card-arrow" />
+                </h3>
+              </div>
+            </Link>
           ))}
         </div>
       </div>

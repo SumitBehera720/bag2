@@ -105,6 +105,7 @@
 
 .carousel-card {
   flex: 0 0 85vw;
+  min-width: 280px;
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
@@ -116,18 +117,21 @@
 @media (min-width: 768px) {
   .carousel-card {
     flex: 0 0 calc(33.333% - 16px);
+    min-width: 260px;
   }
 }
 
 @media (min-width: 1200px) {
   .carousel-card {
     flex: 0 0 calc(25% - 18px);
+    min-width: 280px;
   }
 }
 
 @media (min-width: 1600px) {
   .carousel-card {
     flex: 0 0 calc(20% - 20px);
+    min-width: 300px;
   }
 }
 
